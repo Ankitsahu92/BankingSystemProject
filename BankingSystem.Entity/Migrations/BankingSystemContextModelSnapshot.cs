@@ -110,6 +110,9 @@ namespace BankingSystem.Entity.Migrations
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -119,12 +122,13 @@ namespace BankingSystem.Entity.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2022, 10, 18, 16, 42, 19, 206, DateTimeKind.Local).AddTicks(2522),
+                            CreatedOn = new DateTime(2022, 10, 18, 19, 26, 34, 285, DateTimeKind.Local).AddTicks(5224),
                             FirstName = "System",
-                            LastName = "",
-                            Password = "System@1234",
-                            UserName = "System@gmail.com",
-                            isActive = true
+                            LastName = "System",
+                            Password = "tgIOlADjVv9+YoGrPCCBTQ==",
+                            UserName = "8978786933",
+                            isActive = true,
+                            isAdmin = true
                         });
                 });
 #pragma warning restore 612, 618

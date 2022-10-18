@@ -1,4 +1,5 @@
 ﻿using BankingSystem.BAL.IService;
+using BankingSystem.Common;
 using BankingSystem.DAL.IRepository;
 using BankingSystem.Model.Model;
 using BankingSystem.Model.Model.Common;
@@ -31,14 +32,9 @@ namespace BankingSystem.BAL.Service
 
         public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest model)
         {
-            //var hashPwd = BCrypt.HashPassword("test");
-            var user = (await unitOfWork.User.Find(x => x.UserName == model.Username && x.Password == model.Password)).FirstOrDefault();
-            //await db.Users.SingleOrDefaultAsync(x => x.Username == model.Username && x.Password == model.Password);
+            var user = (await unitOfWork.User.Find(x => x.UserName == model.Username && x.Password == EncryptionAndDescription.Encrypt(model.Password))).FirstOrDefault();
+            if (user == null || user.Password != EncryptionAndDescription.Encrypt(model.Password)) return null;
 
-            // return null if user not found
-            if (user == null || user.Password != model.Password) return null;
-
-            // authentication successful so generate jwt token
             var token = await generateJwtToken(user);
 
             return new AuthenticateResponse(user, token);

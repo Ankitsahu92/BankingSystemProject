@@ -2,12 +2,14 @@
 using BankingSystem.Filters;
 using BankingSystem.Model.Model;
 using BankingSystem.Model.RequestModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AuthorizeAttribute = BankingSystem.Filters.AuthorizeAttribute;
 
 namespace BankingSystem.Controllers
 {
-    [ApiController]
+    [ApiController, Authorize]
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
@@ -18,6 +20,7 @@ namespace BankingSystem.Controllers
             userService = _userService;
         }
 
+        [AllowAnonymous]
         [HttpPost("Authenticate")]
         public async Task<IActionResult> Authenticate(AuthenticateRequest model)
         {
@@ -31,21 +34,18 @@ namespace BankingSystem.Controllers
 
 
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> Get()
         {
             return Ok(await userService.GetAll());
         }
 
         [HttpGet("{id}")]
-        [Authorize]
         public async Task<IActionResult> Get(int id)
         {
             return Ok(await userService.GetById(id));
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Post([FromBody] UserVM userObj)
         {
             userObj.Id = 0;
@@ -53,7 +53,6 @@ namespace BankingSystem.Controllers
         }
 
         [HttpPut]
-        [Authorize]
         public async Task<IActionResult> Put([FromBody] UserVM userObj)
         {
             return Ok(await userService.AddAndUpdateUser(userObj));

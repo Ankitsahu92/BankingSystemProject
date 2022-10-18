@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BankingSystem.Common;
 using BankingSystem.DAL.IRepository;
 using BankingSystem.Entity.Context;
 using BankingSystem.Model.EntityModel;
@@ -40,7 +41,7 @@ namespace BankingSystem.DAL.Repository
                     obj.isActive = userObj.isActive;
                     if (!string.IsNullOrEmpty(userObj.Password))
                     {
-                        obj.Password = userObj.Password;
+                        obj.Password = EncryptionAndDescription.Encrypt(userObj.Password);
                     }
                     context.Update(obj);
                     isSuccess = await context.SaveChangesAsync() > 0;

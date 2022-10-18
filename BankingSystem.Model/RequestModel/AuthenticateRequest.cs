@@ -11,7 +11,7 @@ namespace BankingSystem.Model.RequestModel
     public class AuthenticateRequest
     {
         [Required]
-        [DefaultValue("System@gmail.com")]
+        [DefaultValue("8978786933")]
         public string? Username { get; set; }
 
         [Required]

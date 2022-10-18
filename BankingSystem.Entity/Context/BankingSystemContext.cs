@@ -1,4 +1,5 @@
-﻿using BankingSystem.Model.EntityModel;
+﻿using BankingSystem.Common;
+using BankingSystem.Model.EntityModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,10 @@ namespace BankingSystem.Entity.Context
                 {
                     Id = 1,
                     FirstName = "System",
-                    LastName = "",
-                    UserName = "System@gmail.com",
-                    Password = "System@1234",
+                    LastName = "System",
+                    UserName = "8978786933",
+                    Password = EncryptionAndDescription.Encrypt("System@1234"),
+                    isAdmin=true,
                     CreatedBy = 1,
                     CreatedOn = DateTime.Now
                 }

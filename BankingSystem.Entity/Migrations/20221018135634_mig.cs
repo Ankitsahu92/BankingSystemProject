@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BankingSystem.Entity.Migrations
 {
-    public partial class addedUser : Migration
+    public partial class mig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,7 +45,8 @@ namespace BankingSystem.Entity.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,8 +55,8 @@ namespace BankingSystem.Entity.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "CreatedBy", "CreatedByIP", "CreatedOn", "FirstName", "LastName", "ModifiedBy", "ModifiedByIP", "ModifiedOn", "Password", "UserName", "isActive" },
-                values: new object[] { 1, 1, null, new DateTime(2022, 10, 18, 16, 42, 19, 206, DateTimeKind.Local).AddTicks(2522), "System", "", null, null, null, "System@1234", "System@gmail.com", true });
+                columns: new[] { "Id", "CreatedBy", "CreatedByIP", "CreatedOn", "FirstName", "LastName", "ModifiedBy", "ModifiedByIP", "ModifiedOn", "Password", "UserName", "isActive", "isAdmin" },
+                values: new object[] { 1, 1, null, new DateTime(2022, 10, 18, 19, 26, 34, 285, DateTimeKind.Local).AddTicks(5224), "System", "System", null, null, null, "tgIOlADjVv9+YoGrPCCBTQ==", "8978786933", true, true });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
