@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem", "BankingSystem.csproj", "{21762BC1-209B-4922-8E4B-6DFF3853E678}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingSystem", "BankingSystem.csproj", "{21762BC1-209B-4922-8E4B-6DFF3853E678}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem.Model", "..\BankingSystem.Model\BankingSystem.Model.csproj", "{DD3997F5-8C0E-40DB-AB27-B09B99E5FD41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem.BAL", "..\BankingSystem.BAL\BankingSystem.BAL.csproj", "{FD492A15-CCCE-416C-A8D6-ECB8A1763A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem.Common", "..\BankingSystem.Common\BankingSystem.Common.csproj", "{103383A2-9A07-49E7-A726-13B4D960CD26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem.DAL", "..\BankingSystem.DAL\BankingSystem.DAL.csproj", "{EB824306-3365-4BDB-91E4-EDCF8330BB0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem.Entity", "..\BankingSystem.Entity\BankingSystem.Entity.csproj", "{D998B88A-DCC3-4F49-B4A1-FC991AF1A6BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{21762BC1-209B-4922-8E4B-6DFF3853E678}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21762BC1-209B-4922-8E4B-6DFF3853E678}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21762BC1-209B-4922-8E4B-6DFF3853E678}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD3997F5-8C0E-40DB-AB27-B09B99E5FD41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD3997F5-8C0E-40DB-AB27-B09B99E5FD41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD3997F5-8C0E-40DB-AB27-B09B99E5FD41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD3997F5-8C0E-40DB-AB27-B09B99E5FD41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD492A15-CCCE-416C-A8D6-ECB8A1763A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD492A15-CCCE-416C-A8D6-ECB8A1763A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD492A15-CCCE-416C-A8D6-ECB8A1763A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD492A15-CCCE-416C-A8D6-ECB8A1763A16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{103383A2-9A07-49E7-A726-13B4D960CD26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{103383A2-9A07-49E7-A726-13B4D960CD26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{103383A2-9A07-49E7-A726-13B4D960CD26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{103383A2-9A07-49E7-A726-13B4D960CD26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB824306-3365-4BDB-91E4-EDCF8330BB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB824306-3365-4BDB-91E4-EDCF8330BB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB824306-3365-4BDB-91E4-EDCF8330BB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB824306-3365-4BDB-91E4-EDCF8330BB0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D998B88A-DCC3-4F49-B4A1-FC991AF1A6BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D998B88A-DCC3-4F49-B4A1-FC991AF1A6BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D998B88A-DCC3-4F49-B4A1-FC991AF1A6BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D998B88A-DCC3-4F49-B4A1-FC991AF1A6BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
