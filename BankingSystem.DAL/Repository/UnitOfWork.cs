@@ -21,9 +21,11 @@ namespace BankingSystem.DAL.Repository
 
             User = new UserRepository(mapper, context);
             Employee = new EmployeeRepository(mapper, context);
+            Accounts = new AccountsRepository(mapper, context);
         }
         public IUserRepository User { get; private set; }
         public IEmployeeRepository Employee { get; private set; }
+        public IAccountsRepository Accounts { get; private set; }
         public int Complete()
         {
             return context.SaveChanges();

@@ -21,6 +21,12 @@ namespace BankingSystem.Model.Model
         [MaxLength(50)]
         public string? UserName { get; set; }
 
+        [MaxLength(20)]
+        public string? AccounNo { get; set; }
+
+        [MaxLength(50)]
+        public string? AccounType { get; set; }
+
         // [JsonIgnore]
         public string? Password { get; set; }
 

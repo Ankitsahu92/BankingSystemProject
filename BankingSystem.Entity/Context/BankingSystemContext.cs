@@ -17,6 +17,7 @@ namespace BankingSystem.Entity.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<Accounts> Accounts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
