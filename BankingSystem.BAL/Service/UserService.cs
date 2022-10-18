@@ -54,6 +54,12 @@ namespace BankingSystem.BAL.Service
         {
             return await repository.AddAndUpdateUser(userObj);
         }
+
+        public async Task<bool> ChangePassword(ChangePassword userObj)
+        {
+            return await repository.ChangePassword(userObj);
+        }
+
         // helper methods
         private async Task<string> generateJwtToken(UserVM user)
         {

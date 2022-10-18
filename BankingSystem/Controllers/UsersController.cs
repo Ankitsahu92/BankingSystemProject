@@ -57,5 +57,11 @@ namespace BankingSystem.Controllers
         {
             return Ok(await userService.AddAndUpdateUser(userObj));
         }
+
+        [HttpPut("ChangePassword")]
+        public async Task<IActionResult> Put([FromBody] ChangePassword userObj)
+        {
+            return Ok(await userService.ChangePassword(userObj));
+        }
     }
 }

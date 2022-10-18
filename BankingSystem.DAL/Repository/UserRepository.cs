@@ -4,6 +4,7 @@ using BankingSystem.DAL.IRepository;
 using BankingSystem.Entity.Context;
 using BankingSystem.Model.EntityModel;
 using BankingSystem.Model.Model;
+using BankingSystem.Model.RequestModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,27 @@ namespace BankingSystem.DAL.Repository
             }
 
             return isSuccess ? userObj : null;
+        }
+
+        public async Task<bool> ChangePassword(ChangePassword userObj)
+        {
+            bool isSuccess = false;
+            if (userObj.UserID > 0)
+            {
+                var obj = await context.Users.SingleOrDefaultAsync(u => u.Id == userObj.UserID);
+                if (obj != null)
+                {
+                    obj.ModifiedBy = userObj.UserID;
+                    obj.ModifiedOn = DateTime.Now;
+                    if (!string.IsNullOrEmpty(userObj.Password))
+                    {
+                        obj.Password = EncryptionAndDescription.Encrypt(userObj.Password);
+                    }
+                    context.Update(obj);
+                    isSuccess = await context.SaveChangesAsync() > 0;
+                }
+            }
+            return isSuccess;
         }
 
         /* public async Task<IEnumerable<CustomerSP>> getAllCustomersSP(int id)
