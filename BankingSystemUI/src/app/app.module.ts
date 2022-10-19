@@ -8,6 +8,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     BrowserAnimationsModule,
 
     AppRoutingModule,
-
+    ReactiveFormsModule,
+    FormsModule,
     AlertModule.forRoot()
   ],
   providers: [],
