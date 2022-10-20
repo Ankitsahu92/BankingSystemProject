@@ -14,7 +14,7 @@ namespace BankingSystem.Model.ResponseModel
         public string? LastName { get; set; }
         public string? UserName { get; set; }
         public string? Token { get; set; }
-
+        public bool isAdmin { get; set; }
 
         public AuthenticateResponse(UserVM user, string token)
         {
@@ -23,6 +23,7 @@ namespace BankingSystem.Model.ResponseModel
             LastName = user.LastName;
             UserName = user.UserName;
             Token = token;
+            isAdmin=user.isAdmin;
         }
     }
 }

@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
-import { AlertModule } from 'ngx-bootstrap/alert';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { ShareModule } from './share/share.module';
 
 @NgModule({
   declarations: [
@@ -19,11 +19,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
     AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    AlertModule.forRoot()
+    ShareModule
   ],
   providers: [],
   bootstrap: [AppComponent]

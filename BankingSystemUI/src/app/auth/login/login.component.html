@@ -5,14 +5,14 @@
             <div *ngIf="logMsg" class="alert text-center" [ngClass]="logMsg.alert" role="alert">
                 {{logMsg.msg}}
             </div>
-            <form [formGroup]="frm" (submit)="logOnSubmit()">
+            <form [formGroup]="frm" (submit)="logOnSubmit()" autocomplete="off">
                 <input type="text" placeholder="Username" formControlName="username"
                     [ngClass]="{'hasError': isSubmited && frm.get('username')?.hasError('required')}" />
                 <div class="alert alert-danger inputMsg" role="alert"
                     *ngIf="isSubmited && frm.get('username')?.hasError('required')">
                     <div>Please mention your username</div>
                 </div>
-                <input type=" password" placeholder="Password" formControlName="password"
+                <input type="password" placeholder="Password" formControlName="password"
                     [ngClass]="{'hasError': isSubmited && frm.get('password')?.hasError('required')}" />
                 <div class="alert alert-danger inputMsg" role="alert"
                     *ngIf="isSubmited && frm.get('password')?.hasError('required')">

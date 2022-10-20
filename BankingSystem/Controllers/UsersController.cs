@@ -9,7 +9,7 @@ using AuthorizeAttribute = BankingSystem.Filters.AuthorizeAttribute;
 
 namespace BankingSystem.Controllers
 {
-    [ApiController, Authorize]
+    [ApiController]
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
@@ -33,32 +33,32 @@ namespace BankingSystem.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<IActionResult> Get()
         {
             return Ok(await userService.GetAll());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<IActionResult> Get(int id)
         {
             return Ok(await userService.GetById(id));
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<IActionResult> Post([FromBody] UserVM userObj)
         {
             userObj.Id = 0;
             return Ok(await userService.AddAndUpdateUser(userObj));
         }
 
-        [HttpPut]
+        [HttpPut, Authorize]
         public async Task<IActionResult> Put([FromBody] UserVM userObj)
         {
             return Ok(await userService.AddAndUpdateUser(userObj));
         }
 
-        [HttpPut("ChangePassword")]
+        [HttpPut("ChangePassword"), Authorize]
         public async Task<IActionResult> Put([FromBody] ChangePassword userObj)
         {
             return Ok(await userService.ChangePassword(userObj));

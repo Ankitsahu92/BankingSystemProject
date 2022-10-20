@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppConstants } from 'src/app/share/constant/constant';
+import { AuthService } from 'src/app/share/services';
 
 @Component({
   selector: 'app-login',
@@ -10,48 +12,45 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   frm: FormGroup;
   isSubmited: boolean = false;
-  logBtm: boolean = false;
   logMsg: any;
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
+    private authService: AuthService
   ) {
+    localStorage.clear();
     this.frm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: ['8978786933', Validators.required],
+      password: ['System@1234', Validators.required]
     });
   }
 
   ngOnInit() {
-
   }
 
   get lgFrm() { return this.frm.controls; }
 
   logOnSubmit(): void {
     this.isSubmited = true;
-    this.logBtm = true;
     if (this.frm.invalid) {
-      this.logBtm = false;
       return;
     } else {
       let formObj = this.frm.getRawValue();
-      // this.fetch.logTUsr(formObj).subscribe(
-      //   res => {
-      //     const data: any = res;
-      //     this.auth.sendUsrToken(data.token, data.usrName);
-      //     this.logMsg = { msg: "Login successfully!", alert: 'alert-success' };
-      //     this.frm.reset();
-      //     this.logBtm = false;
-      //     setTimeout(() => {
-      //       this.route.navigate(["/user/order/all"]);
-      //     }, 1500);
-      //   },
-      //   err => {
-      //     this.logBtm = false;
-      //     this.logMsg = { msg: err.error, alert: 'alert-danger' };
-      //   }
-      // );
+      this.authService.login(formObj).subscribe(
+        (res: any) => {
+          localStorage.setItem(AppConstants.FirstName, res.firstName);
+          localStorage.setItem(AppConstants.LastName, res.lastName);
+          localStorage.setItem(AppConstants.UserName, res.userName);
+          localStorage.setItem(AppConstants.Token, res.token);
+          localStorage.setItem(AppConstants.IsAdmin, res.isAdmin);
+          localStorage.setItem(AppConstants.UserID, res.id);
+          this.frm.reset();
+          this.route.navigate(["dashboard", "home"]);
+        },
+        (err: any) => {
+          this.logMsg = { msg: err.error, alert: 'alert-danger' };
+        }
+      );
     }
     this.isSubmited = false;
   }
