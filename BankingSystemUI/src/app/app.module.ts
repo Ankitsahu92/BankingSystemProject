@@ -9,6 +9,7 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
 
 
 import { ShareModule } from './share/share.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ShareModule } from './share/share.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ShareModule
+    ShareModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

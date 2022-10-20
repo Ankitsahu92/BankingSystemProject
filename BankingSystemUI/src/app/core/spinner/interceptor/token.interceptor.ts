@@ -6,7 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AppConstants } from 'src/app/share/constents/constent';
+import { AppConstants } from 'src/app/share/constant/constant';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

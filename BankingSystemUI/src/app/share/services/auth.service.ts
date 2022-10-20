@@ -22,8 +22,12 @@ export class AuthService {
     return this.http.post<any>(`${environment.url}Users/Authenticate`, params);
   }
 
-  getlocalStorageValue(name: string) {
-    return localStorage.getItem(name)
+  changePassword(params: { "userID": number, "password": string }): any {
+    return this.http.put<any>(`${environment.url}Users/ChangePassword`, params);
+  }
+
+  getlocalStorageValue(name: string): string {
+    return localStorage.getItem(name) || ''
   }
 
   setlocalStorageValue(name: string, value: string) {

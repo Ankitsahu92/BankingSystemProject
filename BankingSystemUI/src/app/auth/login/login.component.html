@@ -2,9 +2,9 @@
     <aside>
         <div class="p-4 text-center">
             <h1>Banking System</h1>
-            <div *ngIf="logMsg" class="alert text-center" [ngClass]="logMsg.alert" role="alert">
+            <!-- <div *ngIf="logMsg" class="alert text-center" [ngClass]="logMsg.alert" role="alert">
                 {{logMsg.msg}}
-            </div>
+            </div> -->
             <form [formGroup]="frm" (submit)="logOnSubmit()" autocomplete="off">
                 <input type="text" placeholder="Username" formControlName="username"
                     [ngClass]="{'hasError': isSubmited && frm.get('username')?.hasError('required')}" />

@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 //D:\LTI\Angular\Angular
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NanBarComponent } from './component/nan-bar/nan-bar.component';
 import { RouterModule } from '@angular/router';
 
 import { BsDropdownModule, BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+import { TokenInterceptor } from './Interceptor/token.interceptor';
 
 const importedModule = [
   ReactiveFormsModule,
@@ -40,6 +41,11 @@ const component = [
     ...bootstrap,
     ...component
   ],
-  providers: [BsDropdownConfig]
+  providers: [BsDropdownConfig,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    }]
 })
 export class ShareModule { }
