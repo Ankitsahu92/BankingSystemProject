@@ -10,11 +10,15 @@ import { catchError, Observable, of } from 'rxjs';
 import { Router } from "@angular/router";
 import { AppConstants } from '../constant/constant';
 import { environment } from 'src/environments/environment';
+import { ToastService } from '../services/toast.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private toastService: ToastService
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (localStorage.getItem(AppConstants.Token) && request.url.includes(environment.url)) {
@@ -42,13 +46,12 @@ export class TokenInterceptor implements HttpInterceptor {
  * @returns {any}
  */
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
-    //handle your auth error or rethrow
-    if (err.status === 401) {
-      //navigate /delete cookies or whatever
-      console.log('handled error ' + err.status);
+    if (String(err).includes("401")) {
+      this.toastService.Error("User Unauthorized!!!")
       this.router.navigate([`/login`]);
-      // if you've caught / handled the error, you don't want to rethrow it unless you also want downstream consumers to have to handle it as well.
       return of(err.message);
+    } else {
+      this.toastService.Error("Something went wrong. Please try again later!!!")
     }
     throw err;
   }

@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { AppConstants } from 'src/app/share/constant/constant';
 import { AuthService } from 'src/app/share/services';
+import { ToastService } from 'src/app/share/services/toast.service';
 
 @Component({
   selector: 'app-change-password',
@@ -16,7 +17,8 @@ export class ChangePasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService
   ) {
     this.frm = this.formBuilder.group({
       password: ['', Validators.required],
@@ -38,6 +40,7 @@ export class ChangePasswordComponent implements OnInit {
       this.authService.changePassword({ "userID": +this.authService.getlocalStorageValue(AppConstants.UserID), "password": formObj.password }).subscribe(
         (res: any) => {
           if (res) {
+            this.toastService.Success("Password Change Successfully!!!");
             this.authService.clearlocalStorageValue();
             this.frm.reset();
             this.route.navigate(["/login"]);

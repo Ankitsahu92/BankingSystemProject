@@ -10,16 +10,20 @@ import { AuthService } from '../../services';
 })
 export class NanBarComponent implements OnInit {
   UserName: string = ''
+  IsAdmin: boolean = false;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.UserName = `${this.authService.getlocalStorageValue(AppConstants.FirstName)} ${this.authService.getlocalStorageValue(AppConstants.LastName)}`;
-
-    // localStorage.getItem(AppConstants.FirstName);
-    // localStorage.getItem(AppConstants.LastName);
-    // localStorage.getItem(AppConstants.UserName);
-    // localStorage.getItem(AppConstants.Token);
-    // localStorage.getItem(AppConstants.IsAdmin);
+    const isAdmin = this.authService.getlocalStorageValue(AppConstants.IsAdmin);
+    if (isAdmin) {
+      this.IsAdmin = isAdmin == 'true';
+    }
+    // this.authService.getlocalStorageValue(AppConstants.FirstName);
+    // this.authService.getlocalStorageValue(AppConstants.LastName);
+    // this.authService.getlocalStorageValue(AppConstants.UserName);
+    // this.authService.getlocalStorageValue(AppConstants.Token);
+    // this.authService.getlocalStorageValue(AppConstants.IsAdmin);
   }
 
   logOut() {

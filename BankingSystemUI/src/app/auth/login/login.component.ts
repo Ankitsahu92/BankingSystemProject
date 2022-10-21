@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppConstants } from 'src/app/share/constant/constant';
 import { AuthService } from 'src/app/share/services';
+import { ToastService } from 'src/app/share/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService
   ) {
     localStorage.clear();
     this.frm = this.formBuilder.group({
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
       let formObj = this.frm.getRawValue();
       this.authService.login(formObj).subscribe(
         (res: any) => {
+          this.toastService.Success('Login Successfully !!!')
           localStorage.setItem(AppConstants.FirstName, res.firstName);
           localStorage.setItem(AppConstants.LastName, res.lastName);
           localStorage.setItem(AppConstants.UserName, res.userName);
@@ -48,7 +51,7 @@ export class LoginComponent implements OnInit {
           this.route.navigate(["dashboard", "home"]);
         },
         (err: any) => {
-          this.logMsg = { msg: err.error, alert: 'alert-danger' };
+          // this.logMsg = { msg: err.error, alert: 'alert-danger' };
         }
       );
     }

@@ -3,20 +3,21 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { AppConstants } from '../constant/constant';
 import jwt_decode from "jwt-decode";
+import { AuthService } from '../services';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let isvalid: boolean = false;
-    const token = localStorage.getItem(AppConstants.Token);
+    const token = this.authService.getlocalStorageValue(AppConstants.Token);
 
     if (token) {
       const decoded = jwt_decode(token) as any;

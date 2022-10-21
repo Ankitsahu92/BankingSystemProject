@@ -9,7 +9,6 @@ import { AppConstants } from '../constant/constant';
 export class AuthService {
 
   constructor(private http: HttpClient) {
-    this.getIPAddress();
   }
 
   getIPAddress() {
@@ -19,6 +18,7 @@ export class AuthService {
   }
 
   login(params: { "username": string, "password": string }): any {
+    this.getIPAddress();
     return this.http.post<any>(`${environment.url}Users/Authenticate`, params);
   }
 

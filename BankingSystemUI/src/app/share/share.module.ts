@@ -10,6 +10,21 @@ import { RouterModule } from '@angular/router';
 
 import { BsDropdownModule, BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import { TokenInterceptor } from './Interceptor/token.interceptor';
+import { CommonService } from './services/common.service';
+
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { TooltipModule } from 'primeng/tooltip';
+import { ToastModule } from 'primeng/toast';
+
+import { MessageService } from 'primeng/api';
+
+const primeng = [
+  TableModule,
+  ButtonModule,
+  TooltipModule,
+  ToastModule
+];
 
 const importedModule = [
   ReactiveFormsModule,
@@ -35,17 +50,23 @@ const component = [
     AlertModule.forRoot(),
     ...importedModule,
     ...bootstrap,
+    ...primeng,
   ],
   exports: [
     ...importedModule,
     ...bootstrap,
-    ...component
+    ...component,
+    ...primeng,
   ],
-  providers: [BsDropdownConfig,
+  providers: [
+    BsDropdownConfig,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
-    }]
+    },
+    CommonService,
+    MessageService,
+  ]
 })
 export class ShareModule { }

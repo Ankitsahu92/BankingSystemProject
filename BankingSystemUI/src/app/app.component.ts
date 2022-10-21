@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastService } from './share/services/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'BankingSystemUI';
+  title = 'Banking System';
+
+  constructor(private toastService: ToastService) {
+  }
+
+  onConfirm() {
+    this.toastService.onConfirm();
+  }
+
+  onReject() {
+    this.toastService.onReject();
+  }
 }
