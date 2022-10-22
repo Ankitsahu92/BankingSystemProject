@@ -25,7 +25,8 @@
                         </div>
                         <div class="col col-xs-4 col-sm-6 col-lg-4">
                             <label>accoun No</label>
-                            <input (keypress)="isNumber($event)" type="text" placeholder="accoun No" maxlength="10"
+                            <input [disabled]="id != 0 " (keypress)="isNumber($event)" type="text"
+                                placeholder="accoun No" maxlength="10"
                                 [ngClass]="{'hasError': isSubmited && frm.get('accounNo')?.hasError('required')}"
                                 formControlName="accounNo" />
                         </div>
@@ -59,8 +60,9 @@
                             </div> -->
 
                             <label style="display: block;" class="form-check-label" for="isAdmin">is
-                                Admin</label>
-                            <input type="checkbox" placeholder="is Admin" class="form-check-input" id="isAdmin"
+                                Admin </label>
+                            <input (change)="onIsAdminChange()" type="checkbox" placeholder="is Admin"
+                                class="form-check-input" id="isAdmin"
                                 [ngClass]="{'hasError': isSubmited && frm.get('isAdmin')?.hasError('required')}"
                                 formControlName="isAdmin" />
                         </div>

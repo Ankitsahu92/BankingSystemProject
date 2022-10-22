@@ -26,6 +26,20 @@ export class CommonService {
         }
     }
 
+    removeDefaultProperty(obj: any) {
+        const retObj = { ...obj };
+
+        delete retObj.createdBy;
+        delete retObj.createdOn;
+        delete retObj.createdByIP;
+
+        delete retObj.modifiedBy;
+        delete retObj.modifiedOn;
+        delete retObj.modifiedByIP;
+
+        return retObj;
+    }
+
     getAccountType() {
         return [
             { name: 'Savings Account', value: 1 },

@@ -36,13 +36,26 @@ namespace BankingSystem.Controllers
         [HttpGet, Authorize]
         public async Task<IActionResult> Get()
         {
-            return Ok(await userService.GetAll());
+            var data = await userService.GetAll();
+            if (data != null)
+            {
+                foreach (var item in data)
+                {
+                    item.Password = String.Empty;
+                }
+            }
+            return Ok(data);
         }
 
         [HttpGet("{id}"), Authorize]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await userService.GetById(id));
+            var data = await userService.GetById(id);
+            if(data != null)
+            {
+                data.Password = String.Empty;
+            }
+            return Ok(data);
         }
 
         [HttpPost, Authorize]

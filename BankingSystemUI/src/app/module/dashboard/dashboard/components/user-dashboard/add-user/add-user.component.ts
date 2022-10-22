@@ -31,13 +31,17 @@ export class AddUserComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: any) => {
       if (params?.id) {
         this.id = +params?.id;
-        this.frm.get('id')?.patchValue(this.id);
-        this.frm.get('accounType')?.patchValue('-1');
-        this.frm.get('isActive')?.patchValue(true);
-        this.frm.get('isAdmin')?.patchValue(false);
+        this.GetUsersByID(this.id);
+
+
+        // this.frm.get('id')?.patchValue(this.id);
+        // this.frm.get('accounType')?.patchValue('-1');
+        // this.frm.get('isActive')?.patchValue(true);
+        // this.frm.get('isAdmin')?.patchValue(false);
       }
     })
 
+    this.onIsAdminChange();
   }
 
   bindForm() {
@@ -52,20 +56,6 @@ export class AddUserComponent implements OnInit {
       isAdmin: [false, Validators.required],
       isActive: [true, Validators.required],
     });
-
-
-    /*
-    {
-  "createdBy": 0,
-  "createdOn": "2022-10-21T14:07:40.438Z",
-  "createdByIP": "string",
-  "modifiedBy": 0,
-  "modifiedOn": "2022-10-21T14:07:40.438Z",
-  "modifiedByIP": "string",
-  "isActive": true,
-  
-}
-    */
   }
 
   resetForm() {
@@ -89,8 +79,42 @@ export class AddUserComponent implements OnInit {
     })
   }
 
+  GetUsersByID(id: number): any {
+    this.userService.GetUsersByID(id).subscribe((res: any) => {
+      console.log(res, "GetUsersByID");
+      if (res) {
+        this.frm.setValue(this.commonService.removeDefaultProperty(res));
+        this.onIsAdminChange();
+      }
+    })
+  }
 
   isNumber(evt: any) {
     return this.commonService.CheckInputIsNumber(evt);
+  }
+
+  onIsAdminChange() {
+    const isAdmin = this.frm.get('isAdmin')?.value;
+    if (isAdmin && isAdmin == true) {
+      this.frm.get('accounNo')?.removeValidators(Validators.required);
+      this.frm.get('accounNo')?.updateValueAndValidity();
+      this.frm.get('accounNo')?.setValue(null);
+      this.frm.get('accounNo')?.disable();
+
+      this.frm.get('accounType')?.removeValidators(Validators.required);
+      this.frm.get('accounType')?.updateValueAndValidity();
+      this.frm.get('accounType')?.setValue(-1);
+      this.frm.get('accounType')?.disable();
+    } else {
+      this.frm.get('accounNo')?.addValidators(Validators.required);
+      this.frm.get('accounNo')?.updateValueAndValidity();
+      this.frm.get('accounType')?.addValidators(Validators.required);
+      this.frm.get('accounType')?.updateValueAndValidity();
+    }
+
+    if (this.id != 0) {
+      this.frm.get('password')?.removeValidators(Validators.required);
+      this.frm.get('password')?.updateValueAndValidity();
+    }
   }
 }

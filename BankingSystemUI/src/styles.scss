@@ -346,8 +346,9 @@ label {
     opacity: 0.6;
     cursor: not-allowed;
   }
-
-  input[readonly] ,input[disabled]{ 
+  
+  input[readonly] ,input[disabled],
+  select[readonly] ,select[disabled]{ 
     background: #CCC; 
     // color: #333; 
     // border: 1px solid #666 
@@ -367,6 +368,9 @@ button {
     margin-top: 10px;
     transition: 0.2s all linear;
     margin-right: 5px;
+    border-radius: 15px 5px 5px 5px !important;
+    border-color: #d6c2c2 !important;
+    box-shadow: inset 5px 4px 7px 0px rgb(185 185 185 / 71%) !important;
   }
   
   .btn-secondary:hover,.btn-secondary:active ,

@@ -71,4 +71,9 @@ export class UserListComponent implements OnInit {
 
 
   }
+
+  //routerLink="/dashboard/user/add"
+  RegisterNewUser() {
+    this.route.navigate(["dashboard", "user", 'add']);
+  }
 }
