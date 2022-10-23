@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <tabset>
+            <tab heading="AccountSummary" (selectTab)="selectTab='AccountSummary'">
+                <app-account-summary></app-account-summary>
+            </tab>
+            <tab heading="Deposit" (selectTab)="selectTab='Deposit'">
+                <app-deposit></app-deposit>
+            </tab>
+            <tab heading="Withdraw" (selectTab)="selectTab='Withdraw'">
+                <app-withdraw></app-withdraw>
+            </tab>
+            <tab heading="Fund Transfer" (selectTab)="selectTab='FundTransfer'">
+                <app-fund-transfer></app-fund-transfer>
+            </tab>
+        </tabset>
+    </div>
+</div>
