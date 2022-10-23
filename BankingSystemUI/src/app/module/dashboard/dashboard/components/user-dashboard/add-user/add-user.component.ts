@@ -14,7 +14,7 @@ export class AddUserComponent implements OnInit {
   id: number = 0;
   frm: FormGroup;
   isSubmited: boolean = false;
-  accountType: any[] = [];
+  accountTypeList: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +26,7 @@ export class AddUserComponent implements OnInit {
   ) {
     this.frm = this.bindForm();
 
-    this.accountType = commonService.getAccountType();
+    this.accountTypeList = commonService.getAccountType();
 
     this.activatedRoute.params.subscribe((params: any) => {
       if (params?.id) {
@@ -35,7 +35,7 @@ export class AddUserComponent implements OnInit {
 
 
         // this.frm.get('id')?.patchValue(this.id);
-        // this.frm.get('accounType')?.patchValue('-1');
+        // this.frm.get('accountType')?.patchValue('-1');
         // this.frm.get('isActive')?.patchValue(true);
         // this.frm.get('isAdmin')?.patchValue(false);
       }
@@ -50,8 +50,8 @@ export class AddUserComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       userName: ['', Validators.required],
-      accounNo: ['', Validators.required],
-      accounType: ['-1', Validators.required],
+      accountNo: ['', Validators.required],
+      accountType: ['-1', Validators.required],
       password: ['', Validators.required],
       isAdmin: [false, Validators.required],
       isActive: [true, Validators.required],
@@ -72,9 +72,9 @@ export class AddUserComponent implements OnInit {
     if (this.frm.invalid)
       return false;
     this.userService.AddOrUpdateUsers(this.frm.value).subscribe((res: any) => {
-      console.log(res, "AddOrUpdateUsers");
       if (res) {
         this.toastService.Success(msg);
+        this.route.navigate(["dashboard", "user"]);
       }
     })
   }
@@ -96,20 +96,33 @@ export class AddUserComponent implements OnInit {
   onIsAdminChange() {
     const isAdmin = this.frm.get('isAdmin')?.value;
     if (isAdmin && isAdmin == true) {
-      this.frm.get('accounNo')?.removeValidators(Validators.required);
-      this.frm.get('accounNo')?.updateValueAndValidity();
-      this.frm.get('accounNo')?.setValue(null);
-      this.frm.get('accounNo')?.disable();
+      this.frm.get('accountNo')?.removeValidators(Validators.required);
+      this.frm.get('accountNo')?.updateValueAndValidity();
+      this.frm.get('accountNo')?.setValue(null);
+      this.frm.get('accountNo')?.disable();
 
-      this.frm.get('accounType')?.removeValidators(Validators.required);
-      this.frm.get('accounType')?.updateValueAndValidity();
-      this.frm.get('accounType')?.setValue(-1);
-      this.frm.get('accounType')?.disable();
+      this.frm.get('accountType')?.removeValidators(Validators.required);
+      this.frm.get('accountType')?.updateValueAndValidity();
+      this.frm.get('accountType')?.setValue(-1);
+      this.frm.get('accountType')?.disable();
+
+      this.frm.get('userName')?.addValidators(Validators.required);
+      this.frm.get('userName')?.updateValueAndValidity();
+      this.frm.get('userName')?.enable();
+
     } else {
-      this.frm.get('accounNo')?.addValidators(Validators.required);
-      this.frm.get('accounNo')?.updateValueAndValidity();
-      this.frm.get('accounType')?.addValidators(Validators.required);
-      this.frm.get('accounType')?.updateValueAndValidity();
+      this.frm.get('accountNo')?.addValidators(Validators.required);
+      this.frm.get('accountNo')?.updateValueAndValidity();
+      this.frm.get('accountNo')?.enable();
+
+      this.frm.get('accountType')?.addValidators(Validators.required);
+      this.frm.get('accountType')?.updateValueAndValidity();
+      this.frm.get('accountType')?.enable();
+
+      this.frm.get('userName')?.removeValidators(Validators.required);
+      this.frm.get('userName')?.updateValueAndValidity();
+      this.frm.get('userName')?.setValue(null);
+      this.frm.get('userName')?.disable();
     }
 
     if (this.id != 0) {

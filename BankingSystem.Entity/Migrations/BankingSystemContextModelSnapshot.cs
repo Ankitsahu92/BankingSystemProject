@@ -139,11 +139,11 @@ namespace BankingSystem.Entity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AccounNo")
+                    b.Property<string>("AccountNo")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("AccounType")
+                    b.Property<string>("AccountType")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -178,7 +178,6 @@ namespace BankingSystem.Entity.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -197,7 +196,7 @@ namespace BankingSystem.Entity.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2022, 10, 18, 21, 58, 50, 22, DateTimeKind.Local).AddTicks(9673),
+                            CreatedOn = new DateTime(2022, 10, 23, 14, 51, 8, 568, DateTimeKind.Local).AddTicks(6606),
                             FirstName = "System",
                             LastName = "System",
                             Password = "tgIOlADjVv9+YoGrPCCBTQ==",

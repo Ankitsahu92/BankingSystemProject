@@ -1,4 +1,5 @@
 ﻿using BankingSystem.Model.Model;
+using BankingSystem.Model.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace BankingSystem.BAL.IService
 {
     public interface IAccountsService
     {
+        Task<IEnumerable<AccountNoResponse>> GetAllAccountNo();
         Task<AccountsVM> GetAccountBalanceByAccountNo(string accountNo);
 
         Task<AccountsVM> GetAccountBalanceByUserID(int UserId);

@@ -38,12 +38,12 @@ const bootstrap = [
 ]
 
 const component = [
-  NanBarComponent
+  NanBarComponent,
 ];
 
 @NgModule({
   declarations: [
-    ...component
+    ...component,
   ],
   imports: [
     CommonModule,

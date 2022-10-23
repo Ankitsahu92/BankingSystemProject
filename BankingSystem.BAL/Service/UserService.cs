@@ -32,7 +32,7 @@ namespace BankingSystem.BAL.Service
 
         public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest model)
         {
-            var user = (await unitOfWork.User.Find(x => x.UserName == model.Username && x.Password == EncryptionAndDescription.Encrypt(model.Password))).FirstOrDefault();
+            var user = (await unitOfWork.User.Find(x => (x.UserName == model.Username || x.AccountNo == model.Username) && x.Password == EncryptionAndDescription.Encrypt(model.Password))).FirstOrDefault();
             if (user == null || user.Password != EncryptionAndDescription.Encrypt(model.Password)) return null;
 
             var token = await generateJwtToken(user);
@@ -42,7 +42,8 @@ namespace BankingSystem.BAL.Service
 
         public async Task<IEnumerable<UserVM>> GetAll()
         {
-            return await unitOfWork.User.GetAll();
+            //return await unitOfWork.User.GetAll();
+            return await unitOfWork.User.Find(f => f.isActive);
         }
 
         public async Task<UserVM> GetById(int id)
@@ -71,7 +72,7 @@ namespace BankingSystem.BAL.Service
                 var key = Encoding.ASCII.GetBytes(appSettings.Secret);
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
-                    Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()), new Claim("UserName", user.UserName.ToString()), new Claim("FirstName", user.FirstName.ToString()) }),
+                    Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()), new Claim("FirstName", user.FirstName.ToString()), new Claim("LastName", user.LastName.ToString()) }),
                     Expires = DateTime.UtcNow.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
@@ -79,6 +80,11 @@ namespace BankingSystem.BAL.Service
             });
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public async Task<bool> DeleteUser(DeleteUserRequest req)
+        {
+            return await repository.DeleteUser(req);
         }
     }
 }

@@ -36,6 +36,9 @@ namespace BankingSystem.DAL.Repository
                     obj.FirstName = userObj.FirstName;
                     obj.LastName = userObj.LastName;
                     obj.UserName = userObj.UserName;
+                    obj.AccountNo = userObj.AccountNo;
+                    obj.AccountType = userObj.AccountType;
+                    obj.isAdmin = userObj.isAdmin;
                     obj.ModifiedBy = userObj.ModifiedBy;
                     obj.ModifiedOn = DateTime.Now;
                     obj.ModifiedByIP = userObj.ModifiedByIP;
@@ -52,7 +55,8 @@ namespace BankingSystem.DAL.Repository
             {
                 User user = mapper.Map<User>(userObj);
                 user.isActive = true;
-                await context.Users.AddAsync(mapper.Map<User>(userObj));
+                user.Password = EncryptionAndDescription.Encrypt(user.Password);
+                await context.Users.AddAsync(user);
                 isSuccess = await context.SaveChangesAsync() > 0;
             }
 
@@ -73,6 +77,25 @@ namespace BankingSystem.DAL.Repository
                     {
                         obj.Password = EncryptionAndDescription.Encrypt(userObj.Password);
                     }
+                    context.Update(obj);
+                    isSuccess = await context.SaveChangesAsync() > 0;
+                }
+            }
+            return isSuccess;
+        }
+
+        public async Task<bool> DeleteUser(DeleteUserRequest req)
+        {
+            bool isSuccess = false;
+            if (req.UserId > 0)
+            {
+                var obj = await context.Users.SingleOrDefaultAsync(u => u.Id == req.UserId);
+                if (obj != null)
+                {
+                    obj.ModifiedBy = req.ModifiedBy;
+                    obj.ModifiedOn = DateTime.Now;
+                    obj.ModifiedByIP = req.ModifiedByIP;
+                    obj.isActive = false;
                     context.Update(obj);
                     isSuccess = await context.SaveChangesAsync() > 0;
                 }

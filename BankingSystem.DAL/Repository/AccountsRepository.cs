@@ -4,6 +4,7 @@ using BankingSystem.Entity.Context;
 using BankingSystem.Model.EntityModel;
 using BankingSystem.Model.Model;
 using BankingSystem.Model.RequestModel;
+using BankingSystem.Model.ResponseModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,24 @@ namespace BankingSystem.DAL.Repository
             this.context = context;
         }
 
+        public async Task<IEnumerable<AccountNoResponse>> GetAllAccountNo()
+        {
+            IEnumerable<AccountNoResponse> result = await context.Users.Where(u => u.isAdmin == false).Select(s => new AccountNoResponse
+            {
+                Id = s.Id,
+                AccountNo = s.AccountNo,
+                AccountType = s.AccountType,
+                FirstName = s.FirstName,
+                LastName = s.LastName,
+                UserName = s.UserName,
+            }).ToListAsync();
+
+            return result;
+        }
+
         public async Task<AccountsVM> GetAccountBalanceByAccountNo(string accountNo)
         {
-            int UserId = await context.Users.Where(u => u.AccounNo == accountNo).Select(s => s.Id).FirstOrDefaultAsync();
+            int UserId = await context.Users.Where(u => u.AccountNo == accountNo).Select(s => s.Id).FirstOrDefaultAsync();
             if (UserId > 0)
             {
                 Accounts? lastTrs = await context.Accounts.LastOrDefaultAsync(u => u.UserId == UserId);
@@ -55,7 +71,7 @@ namespace BankingSystem.DAL.Repository
 
         public async Task<AccountsVM> GetTop10TransactionByAccountNo(string accountNo)
         {
-            int UserId = await context.Users.Where(u => u.AccounNo == accountNo).Select(s => s.Id).FirstOrDefaultAsync();
+            int UserId = await context.Users.Where(u => u.AccountNo == accountNo).Select(s => s.Id).FirstOrDefaultAsync();
             if (UserId > 0)
             {
                 List<Accounts> lastTrs = await context.Accounts.Where(u => u.UserId == UserId).TakeLast(10).ToListAsync();
@@ -110,5 +126,26 @@ namespace BankingSystem.DAL.Repository
 
             return isSuccess;
         }
+
+        public async Task<bool> DeleteUser(DeleteUserRequest req)
+        {
+            bool isSuccess = false;
+            Accounts? lastTrs = await context.Accounts.LastOrDefaultAsync(u => u.UserId == req.UserId);
+            if (lastTrs != null)
+            {
+                lastTrs.isActive =false;
+                lastTrs.ModifiedBy = lastTrs.ModifiedBy;
+                lastTrs.ModifiedOn = DateTime.Now;
+                lastTrs.ModifiedByIP = lastTrs.ModifiedByIP;
+            }
+            isSuccess = await context.SaveChangesAsync() > 0;
+
+            return isSuccess;
+        }
+
+        //public async Task<bool> DeleteUser(DeleteUserRequest req)
+        //{
+        //   re
+        //}
     }
 }

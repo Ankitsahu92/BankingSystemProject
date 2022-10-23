@@ -16,8 +16,8 @@
                         <tr>
                             <th>first Name</th>
                             <th>last Name</th>
-                            <th>accoun No</th>
-                            <th>accoun Type</th>
+                            <th>User Name/ Accoun No</th>
+                            <th>Accoun Type</th>
                             <th>is Admin</th>
                             <th>Action</th>
                         </tr>
@@ -26,8 +26,8 @@
                         <tr>
                             <td>{{user.firstName}}</td>
                             <td>{{user.lastName}}</td>
-                            <td>{{user.accounNo}}</td>
-                            <td>{{GetAccounType(user.accounType)}}</td>
+                            <td>{{user.accountNo|| user.userName}}</td>
+                            <td>{{GetaccountType(user.accountType)}}</td>
                             <td>{{user.isAdmin?'Admin':'User'}}</td>
                             <td>
                                 <button style="margin-right:7px;" pButton pRipple type="button" icon="pi pi-user-edit"
@@ -47,3 +47,5 @@
         </div>
     </div>
 </div>
+
+<!-- <app-confirm></app-confirm> -->

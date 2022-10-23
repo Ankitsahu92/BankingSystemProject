@@ -27,21 +27,21 @@
                             <label>accoun No</label>
                             <input [disabled]="id != 0 " (keypress)="isNumber($event)" type="text"
                                 placeholder="accoun No" maxlength="10"
-                                [ngClass]="{'hasError': isSubmited && frm.get('accounNo')?.hasError('required')}"
-                                formControlName="accounNo" />
+                                [ngClass]="{'hasError': isSubmited && frm.get('accountNo')?.hasError('required')}"
+                                formControlName="accountNo" />
                         </div>
                         <div class="col col-xs-4 col-sm-6 col-lg-4">
                             <label>accoun Type</label>
                             <select placeholder="Select Ecom Coin"
-                                [ngClass]="{'hasError': isSubmited && frm.get('accounType')?.hasError('required')}"
-                                formControlName="accounType">
+                                [ngClass]="{'hasError': isSubmited && frm.get('accountType')?.hasError('required')}"
+                                formControlName="accountType">
                                 <option value="-1">Select</option>
-                                <option [value]="ddl.value" *ngFor="let ddl of accountType"> {{ddl.name}}</option>
+                                <option [value]="ddl.value" *ngFor="let ddl of accountTypeList"> {{ddl.name}}</option>
                             </select>
 
                             <!-- <input type="text" placeholder="accoun Type"
-                                [ngClass]="{'hasError': isSubmited && frm.get('accounType')?.hasError('required')}"
-                                formControlName="accounType" /> -->
+                                [ngClass]="{'hasError': isSubmited && frm.get('accountType')?.hasError('required')}"
+                                formControlName="accountType" /> -->
                         </div>
                         <div class="col col-xs-4 col-sm-6 col-lg-4">
                             <label>password</label>

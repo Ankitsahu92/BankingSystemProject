@@ -10,12 +10,13 @@
                 <h4>{{message.summary}}</h4>
                 <p>{{message.detail}}</p>
             </div>
-            <div class="grid p-fluid">
+            <div class="grid p-fluid" style=" display: flex;">
                 <div class="col-6">
                     <button type="button" pButton (click)="onConfirm()" label="Yes" class="p-button-success"></button>
                 </div>
                 <div class="col-6">
-                    <button type="button" pButton (click)="onReject()" label="No" class="p-button-secondary"></button>
+                    <button style="margin-left:5px" type="button" pButton (click)="onReject()" label="No"
+                        class="p-button-secondary"></button>
                 </div>
             </div>
         </div>

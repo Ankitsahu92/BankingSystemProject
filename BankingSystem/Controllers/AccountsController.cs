@@ -16,6 +16,12 @@ namespace BankingSystem.Controllers
             this.service = service;
         }
 
+        [HttpGet("GetAllAccountNo")]
+        public async Task<IActionResult> GetAllAccountNo()
+        {
+            return Ok(await service.GetAllAccountNo());
+        }
+
         [HttpPost("AddAndSubtractBalances")]
         public async Task<IActionResult> AddAndSubtractBalances([FromBody] AccountsVM obj)
         {

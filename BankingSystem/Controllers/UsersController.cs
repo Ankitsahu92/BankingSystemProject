@@ -31,8 +31,6 @@ namespace BankingSystem.Controllers
             return Ok(response);
         }
 
-
-
         [HttpGet, Authorize]
         public async Task<IActionResult> Get()
         {
@@ -69,6 +67,12 @@ namespace BankingSystem.Controllers
         public async Task<IActionResult> Put([FromBody] UserVM userObj)
         {
             return Ok(await userService.AddAndUpdateUser(userObj));
+        }
+
+        [HttpPut("DeleteUser"), Authorize]
+        public async Task<IActionResult> DeleteUser([FromBody] DeleteUserRequest req)
+        {
+            return Ok(await userService.DeleteUser(req));
         }
 
         [HttpPut("ChangePassword"), Authorize]

@@ -3,8 +3,8 @@ export interface UsersModels {
     firstName: string;
     lastName: string;
     userName: string;
-    accounNo?: string;
-    accounType?: string;
+    accountNo?: string;
+    accountType?: string;
     password: string;
     isAdmin: boolean;
     createdBy: number;

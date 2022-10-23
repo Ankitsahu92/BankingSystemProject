@@ -3,6 +3,7 @@ using BankingSystem.DAL.IRepository;
 using BankingSystem.Model.EntityModel;
 using BankingSystem.Model.Model;
 using BankingSystem.Model.Model.Common;
+using BankingSystem.Model.ResponseModel;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,10 @@ namespace BankingSystem.BAL.Service
             appSettings = _appSettings.Value;
             this.repository = repository;
             this.unitOfWork = unitOfWork;
+        }
+        public async Task<IEnumerable<AccountNoResponse>> GetAllAccountNo()
+        {
+            return await repository.GetAllAccountNo();
         }
 
         public async Task<bool> AddAndSubtractBalances(AccountsVM obj)

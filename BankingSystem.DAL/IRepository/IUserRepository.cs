@@ -12,9 +12,10 @@ namespace BankingSystem.DAL.IRepository
 {
     public interface IUserRepository : IGenericRepository<User>
     {
-        Task<UserVM> AddAndUpdateUser(UserVM userObj);
+        Task<UserVM> AddAndUpdateUser(UserVM req);
 
-        Task<bool> ChangePassword(ChangePassword userObj);
-        
+        Task<bool> ChangePassword(ChangePassword req);
+        Task<bool> DeleteUser(DeleteUserRequest req);
+
     }
 }

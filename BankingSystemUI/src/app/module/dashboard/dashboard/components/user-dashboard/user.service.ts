@@ -31,5 +31,9 @@ export class UserService {
     }
   }
 
+  DeleteUsers(params: any): any {
+    return this.http.put<any>(`${environment.url}Users/DeleteUser`, { ...params, ...this.commonService.getUpdateObj() });
+  }
+
 
 }
