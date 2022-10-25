@@ -86,5 +86,10 @@ namespace BankingSystem.BAL.Service
         {
             return await repository.DeleteUser(req);
         }
+
+        public async Task<ResponseModel> MakeCheckbookRequest(int userID)
+        {
+            return await repository.MakeCheckbookRequest(userID);
+        }
     }
 }

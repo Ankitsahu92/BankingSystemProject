@@ -16,5 +16,7 @@ namespace BankingSystem.DAL.IRepository
         Task<ResponseModel> AddAndUpdateUser(UserVM req);
         Task<bool> ChangePassword(ChangePassword req);
         Task<bool> DeleteUser(DeleteUserRequest req);
+        Task<ResponseModel> MakeCheckbookRequest(int userID);
+
     }
 }

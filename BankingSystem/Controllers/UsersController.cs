@@ -80,5 +80,11 @@ namespace BankingSystem.Controllers
         {
             return Ok(await userService.ChangePassword(userObj));
         }
+
+        [HttpGet("MakeCheckbookRequest"), Authorize]
+        public async Task<IActionResult> MakeCheckbookRequest(int userID)
+        {
+            return Ok(await userService.MakeCheckbookRequest(userID));
+        }
     }
 }

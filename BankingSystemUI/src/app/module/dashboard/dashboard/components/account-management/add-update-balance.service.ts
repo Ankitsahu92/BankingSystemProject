@@ -45,4 +45,9 @@ export class AddUpdateBalanceService {
     return this.http.post<any>(`${environment.url}Accounts/GetTransactionByAccountNoAndDate`, { ...parms });
   }
 
+  MakeCheckbookRequest(userID: any): any {
+    return this.http.get<any>(`${environment.url}Users/MakeCheckbookRequest?userID=${userID}`);
+  }
+
+
 }

@@ -163,5 +163,30 @@ namespace BankingSystem.DAL.Repository
 
              return null;
          }*/
+
+        public async Task<ResponseModel> MakeCheckbookRequest(int userID)
+        {
+            ResponseModel response = new ResponseModel();
+            bool isSuccess = false;
+            if (userID > 0)
+            {
+                var obj = await context.Users.SingleOrDefaultAsync(u => u.Id == userID);
+                if (obj != null)
+                {
+                    obj.ModifiedBy = userID;
+                    obj.ModifiedOn = DateTime.Now;
+                    obj.MakeCheckbookRequest = true;
+                    context.Update(obj);
+                    isSuccess = await context.SaveChangesAsync() > 0;
+                }
+            }
+            if (isSuccess)
+            {
+                response.Successs = true;
+                response.Message = "Request Sent Successfully!!!";
+            }
+            return response;
+        }
+
     }
 }

@@ -355,9 +355,14 @@ label {
 }
 
 li.nav-item.active> a {
-    color:#ff5834 !important;
+    color:#fff !important;
 }
 
+.btn {
+    // color: var(--bs-btn-hover-color);
+    background-color:  #ff5834 !important;
+    //border-color: var(--bs-btn-hover-border-color);
+}
 
 button {
     border: none;
@@ -456,4 +461,9 @@ input::placeholder {
     text-transform: capitalize;
     font-weight: bold;
     opacity: .5;
+}
+
+.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: #ff5834 !important;
 }

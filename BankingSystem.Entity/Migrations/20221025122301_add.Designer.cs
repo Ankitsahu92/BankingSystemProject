@@ -4,6 +4,7 @@ using BankingSystem.Entity.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingSystem.Entity.Migrations
 {
     [DbContext(typeof(BankingSystemContext))]
-    partial class BankingSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20221025122301_add")]
+    partial class add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,7 +166,7 @@ namespace BankingSystem.Entity.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("MakeCheckbookRequest")
+                    b.Property<bool>("MakeCheckboxRequest")
                         .HasColumnType("bit");
 
                     b.Property<int?>("ModifiedBy")
@@ -198,10 +200,10 @@ namespace BankingSystem.Entity.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2022, 10, 25, 18, 24, 53, 113, DateTimeKind.Local).AddTicks(9219),
+                            CreatedOn = new DateTime(2022, 10, 25, 17, 53, 0, 829, DateTimeKind.Local).AddTicks(5175),
                             FirstName = "System",
                             LastName = "System",
-                            MakeCheckbookRequest = false,
+                            MakeCheckboxRequest = false,
                             Password = "tgIOlADjVv9+YoGrPCCBTQ==",
                             UserName = "8978786933",
                             isActive = true,

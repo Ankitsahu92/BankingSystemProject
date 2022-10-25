@@ -30,5 +30,7 @@ namespace BankingSystem.Model.Model
         public string? Password { get; set; }
 
         public bool isAdmin { get; set; } = false;
+
+        public bool MakeCheckbookRequest { get; set; } = false;
     }
 }

@@ -17,5 +17,6 @@ namespace BankingSystem.BAL.IService
         Task<ResponseModel> AddAndUpdateUser(UserVM userObj);
         Task<bool> ChangePassword(ChangePassword userObj);
         Task<bool> DeleteUser(DeleteUserRequest req);
+        Task<ResponseModel> MakeCheckbookRequest(int userID);
     }
 }

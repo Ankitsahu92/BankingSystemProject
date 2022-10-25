@@ -19,16 +19,20 @@ export class NanBarComponent implements OnInit {
     if (isAdmin) {
       this.IsAdmin = isAdmin == 'true';
     }
-    // this.authService.getlocalStorageValue(AppConstants.FirstName);
-    // this.authService.getlocalStorageValue(AppConstants.LastName);
-    // this.authService.getlocalStorageValue(AppConstants.UserName);
-    // this.authService.getlocalStorageValue(AppConstants.Token);
-    // this.authService.getlocalStorageValue(AppConstants.IsAdmin);
   }
 
   logOut() {
     this.authService.clearlocalStorageValue();
     this.router.navigate(['/login'])
+  }
+
+  HomeClick() {
+    if (this.IsAdmin) {
+      this.router.navigate(["dashboard", "admin"]);
+    }
+    else {
+      this.router.navigate(["dashboard", "account"]);
+    }
   }
 
 }

@@ -29,7 +29,7 @@ namespace BankingSystem.Model.ResponseModel
             UserName = UserObj?.UserName;
             AccountNo = UserObj?.AccountNo;
             AccountType = UserObj?.AccountType;
-
+            MakeCheckbookRequest = UserObj.MakeCheckbookRequest;
             FullName = $"{UserObj?.FirstName} {UserObj?.LastName}";
         }
         public int ID { get; set; }
@@ -49,6 +49,7 @@ namespace BankingSystem.Model.ResponseModel
         public string? AccountNo { get; set; }
         public string? AccountType { get; set; }
         public string? FullName { get; set; }
+        public bool MakeCheckbookRequest { get; set; } = false;
 
     }
 }
