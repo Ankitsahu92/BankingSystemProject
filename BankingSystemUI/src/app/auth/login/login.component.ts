@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   logOnSubmit(): void {
     this.isSubmited = true;
-    if (this.frm.invalid) {
+    if (!this.frm.valid) {
       return;
     } else {
       let formObj = this.frm.getRawValue();

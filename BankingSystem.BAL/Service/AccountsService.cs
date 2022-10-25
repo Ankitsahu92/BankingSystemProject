@@ -3,6 +3,7 @@ using BankingSystem.DAL.IRepository;
 using BankingSystem.Model.EntityModel;
 using BankingSystem.Model.Model;
 using BankingSystem.Model.Model.Common;
+using BankingSystem.Model.RequestModel;
 using BankingSystem.Model.ResponseModel;
 using Microsoft.Extensions.Options;
 using System;
@@ -35,12 +36,12 @@ namespace BankingSystem.BAL.Service
            return await repository.AddAndSubtractBalances(obj);
         }
 
-        public async Task<AccountsVM> GetAccountBalanceByAccountNo(string accountNo)
+        public async Task<AccountBalanceResponse> GetAccountBalanceByAccountNo(string accountNo)
         {
             return await repository.GetAccountBalanceByAccountNo(accountNo);
         }
 
-        public async Task<AccountsVM> GetAccountBalanceByUserID(int UserId)
+        public async Task<AccountBalanceResponse> GetAccountBalanceByUserID(int UserId)
         {
             return await repository.GetAccountBalanceByUserID(UserId);
         }
@@ -53,6 +54,10 @@ namespace BankingSystem.BAL.Service
         public async Task<bool> UpdateInterest()
         {
             return await repository.UpdateInterest();
+        }
+        public async Task<ResponseModel> FundTransfer(FundTransferRequestModel req)
+        {
+            return await repository.FundTransfer(req);
         }
     }
 }

@@ -26,7 +26,6 @@ namespace BankingSystem.Model.Model
         public string? TransactionType { get; set; }// Cr & Dr
         [Required]
         public bool isChequeTransaction { get; set; } = false;
-        [Required]
         [MaxLength(200)]
         public string? ChequeAndRefNo { get; set; }
         public DateTime TransactionDate { get; set; }

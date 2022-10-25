@@ -17,6 +17,14 @@
                                 [ngClass]="{'hasError': isSubmited && frm.get('lastName')?.hasError('required')}"
                                 formControlName="lastName" />
                         </div>
+                        <div class="col col-xs-4 col-sm-6 col-lg-4 ">
+                            <label style="display: block;" class="form-check-label" for="isAdmin">is
+                                Admin </label>
+                            <input (change)="onIsAdminChange()" type="checkbox" placeholder="is Admin"
+                                class="form-check-input" id="isAdmin"
+                                [ngClass]="{'hasError': isSubmited && frm.get('isAdmin')?.hasError('required')}"
+                                formControlName="isAdmin" />
+                        </div>
                         <div class="col col-xs-4 col-sm-6 col-lg-4">
                             <label>user Name</label>
                             <input type="text" placeholder="user Name" maxlength="20"
@@ -50,32 +58,12 @@
                                 formControlName="password" />
                         </div>
 
-                        <div class="col col-xs-4 col-sm-6 col-lg-4 ">
 
-                            <!-- <div class="form-check">
-                                <input formControlName="isAdmin" class="form-check-input" type="checkbox" id="isAdmin">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    is Admin
-                                </label>
-                            </div> -->
 
-                            <label style="display: block;" class="form-check-label" for="isAdmin">is
-                                Admin </label>
-                            <input (change)="onIsAdminChange()" type="checkbox" placeholder="is Admin"
-                                class="form-check-input" id="isAdmin"
-                                [ngClass]="{'hasError': isSubmited && frm.get('isAdmin')?.hasError('required')}"
-                                formControlName="isAdmin" />
-                        </div>
-                        <!-- <div class="col col-xs-4 col-sm-6 col-lg-4">
-                            <label>is Active</label>
-                            <input type="text" placeholder="is Active"
-                                [ngClass]="{'hasError': isSubmited && frm.get('isActive')?.hasError('required')}"
-                                formControlName="isActive" />
-                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col col-12" style="text-align: end; margin: 5px;">
-                            <button [disabled]="this.frm.invalid" type="submit"> {{id == 0 ?'Save':'Update'}}</button>
+                            <button [disabled]="!frm.valid" type="submit"> {{id == 0 ?'Save':'Update'}}</button>
                         </div>
                     </div>
                 </form>

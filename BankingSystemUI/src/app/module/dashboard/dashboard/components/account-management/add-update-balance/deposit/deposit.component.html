@@ -2,7 +2,106 @@
     <div class="col col-12">
         <fieldset>
             <legend>Deposit</legend>
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col col-xs-4 col-sm-6 col-lg-4">
+                    Select Account No
+                </div>
+                <div class="col col-xs-4 col-sm-6 col-lg-4">
+                    <p-dropdown (onChange)="ddlOnChange()" [options]="AccountNoList" [(ngModel)]="selectedAccountNo"
+                        optionLabel="ddlName" [filter]="true" filterBy="ddlName" [showClear]="true"
+                        placeholder="Select a Account No">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="selectedAccountNo">
+                                <div>{{selectedAccountNo?.accountNo}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-accountNo pTemplate="item">
+                            <div class="accountNo-item">
+                                <div>{{accountNo.ddlName}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col col-12">
+                    <form [formGroup]="frm" (submit)="onSubmit()" autocomplete="off">
+                        <div class="row">
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>amount</label>
+                                <input (keypress)="isNumber($event)" type="text" placeholder="amount" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('amount')?.hasError('required')}"
+                                    formControlName="amount" />
+                            </div>
 
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>description</label>
+                                <input type="text" placeholder="description" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('description')?.hasError('required')}"
+                                    formControlName="description" />
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>transaction Type</label>
+                                <select placeholder="Select Transaction Type"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('transactionType')?.hasError('required')}"
+                                    formControlName="transactionType">
+                                    <!-- <option value="-1">Select</option> -->
+                                    <option [value]="ddl" *ngFor="let ddl of transactionTypeList">
+                                        {{ddl}}</option>
+                                </select>
+
+                                <!-- <input type="text" placeholder="transactionType" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('transactionType')?.hasError('required')}"
+                                    formControlName="transactionType" /> -->
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4 ">
+                                <label style="display: block;" class="form-check-label" for="isChequeTransaction">is
+                                    Cheque Transaction </label>
+                                <input (change)="onIsChequeTransactionChange()" type="checkbox"
+                                    placeholder="is Cheque Transaction" class="form-check-input"
+                                    id="isChequeTransaction"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('isChequeTransaction')?.hasError('required')}"
+                                    formControlName="isChequeTransaction" />
+                            </div>
+
+                            <!-- <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>is Cheque Transaction</label>
+                                <input type="text" placeholder="isChequeTransaction" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('isChequeTransaction')?.hasError('required')}"
+                                    formControlName="isChequeTransaction" />
+                            </div> -->
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>Cheque And Ref No</label>
+                                <input type="text" placeholder="cheque And Ref No" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('chequeAndRefNo')?.hasError('required')}"
+                                    formControlName="chequeAndRefNo" />
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>transaction Date</label>
+                                <input type="date" placeholder="transaction Date" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('transactionDate')?.hasError('required')}"
+                                    formControlName="transactionDate" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-12">
+                                <!-- {{frm.value | json}} -->
+                                <div class="col col-12" style="text-align: end; margin: 5px;">
+                                    <button [disabled]="!frm.valid" type="submit">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </fieldset>
     </div>
 </div>

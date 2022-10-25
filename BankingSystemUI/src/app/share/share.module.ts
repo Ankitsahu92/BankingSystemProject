@@ -16,6 +16,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { MessageService } from 'primeng/api';
 
@@ -23,7 +24,8 @@ const primeng = [
   TableModule,
   ButtonModule,
   TooltipModule,
-  ToastModule
+  ToastModule,
+  DropdownModule
 ];
 
 const importedModule = [

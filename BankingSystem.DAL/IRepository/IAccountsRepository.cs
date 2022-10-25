@@ -14,9 +14,9 @@ namespace BankingSystem.DAL.IRepository
     public interface IAccountsRepository : IGenericRepository<Accounts>
     {
         Task<IEnumerable<AccountNoResponse>> GetAllAccountNo();
-        Task<AccountsVM> GetAccountBalanceByAccountNo(string accountNo);
+        Task<AccountBalanceResponse> GetAccountBalanceByAccountNo(string accountNo);
 
-        Task<AccountsVM> GetAccountBalanceByUserID(int UserId);
+        Task<AccountBalanceResponse> GetAccountBalanceByUserID(int UserId);
 
         Task<AccountsVM> GetTop10TransactionByAccountNo(string accountNo);
 
@@ -24,5 +24,6 @@ namespace BankingSystem.DAL.IRepository
 
         Task<bool> UpdateInterest();
         Task<bool> DeleteUser(DeleteUserRequest req);
+        Task<ResponseModel> FundTransfer(FundTransferRequestModel req);
     }
 }

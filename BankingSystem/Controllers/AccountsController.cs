@@ -1,6 +1,7 @@
 ﻿using BankingSystem.BAL.IService;
 using BankingSystem.Filters;
 using BankingSystem.Model.Model;
+using BankingSystem.Model.RequestModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,6 +51,12 @@ namespace BankingSystem.Controllers
         public async Task<IActionResult> UpdateInterest()
         {
             return Ok(await service.UpdateInterest());
+        }
+
+        [HttpPost("FundTransfer")]
+        public async Task<IActionResult> FundTransfer(FundTransferRequestModel req)
+        {
+            return Ok(await service.FundTransfer(req));
         }
     }
 }

@@ -69,7 +69,7 @@ export class AddUserComponent implements OnInit {
   onSubmit(): any {
     const msg = `User ${this.id == 0 ? 'added' : 'updated'} successfully!!!`
     this.isSubmited = true;
-    if (this.frm.invalid)
+    if (!this.frm.valid)
       return false;
     this.userService.AddOrUpdateUsers(this.frm.value).subscribe((res: any) => {
       if (res) {

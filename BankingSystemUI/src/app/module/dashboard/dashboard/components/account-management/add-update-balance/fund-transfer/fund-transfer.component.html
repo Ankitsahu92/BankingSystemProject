@@ -2,7 +2,88 @@
     <div class="col col-12">
         <fieldset>
             <legend>Fund Transfer</legend>
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col col-xs-3 col-sm-6 col-lg-3">
+                    From Account No:
+                </div>
+                <div class="col col-xs-3 col-sm-6 col-lg-3">
+                    <p-dropdown (onChange)="ddlFromOnChange()" [options]="FromAccountNoList"
+                        [(ngModel)]="FromSelectedAccountNo" optionLabel="ddlName" [filter]="true" filterBy="ddlName"
+                        [showClear]="true" placeholder="Select a Account No">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="FromSelectedAccountNo">
+                                <div>{{FromSelectedAccountNo?.accountNo}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-accountNo pTemplate="item">
+                            <div class="accountNo-item">
+                                <div>{{accountNo.ddlName}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
 
+                <div class="col col-xs-3 col-sm-6 col-lg-3">
+                    To Account No:
+                </div>
+                <div class="col col-xs-3 col-sm-6 col-lg-3">
+                    <p-dropdown (onChange)="ddlToOnChange()" [options]="ToAccountNoList"
+                        [(ngModel)]="toSelectedAccountNo" optionLabel="ddlName" [filter]="true" filterBy="ddlName"
+                        [showClear]="true" placeholder="Select a Account No">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="toSelectedAccountNo">
+                                <div>{{toSelectedAccountNo?.accountNo}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-accountNo pTemplate="item">
+                            <div class="accountNo-item">
+                                <div>{{accountNo.ddlName}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col col-12">
+                    <div class="row" *ngIf="fullName">
+                        <div class="col-12" style="text-align:center;color: blue;">
+                            <strong>{{fullName}}</strong> account balance is <strong>
+                                {{accountBanlace}}</strong>
+                            <hr>
+                        </div>
+                    </div>
+                    <form [formGroup]="frm" (submit)="onSubmit()" autocomplete="off">
+                        <div class="row">
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>amount</label>
+                                <input (keypress)="isNumber($event)" type="number" placeholder="amount" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('amount')?.hasError('required')}"
+                                    formControlName="amount" />
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>description</label>
+                                <input type="text" placeholder="description" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('description')?.hasError('required')}"
+                                    formControlName="description" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-12">
+                                <!-- {{frm.value | json}} -->
+                                <div class="col col-12" style="text-align: end; margin: 5px;">
+                                    <button [disabled]="!frm.valid" type="submit">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </fieldset>
     </div>
 </div>

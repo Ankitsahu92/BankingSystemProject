@@ -2,6 +2,7 @@
 using BankingSystem.Model.EntityModel;
 using BankingSystem.Model.Model;
 using BankingSystem.Model.RequestModel;
+using BankingSystem.Model.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,5 @@ namespace BankingSystem.DAL.IRepository
 
         Task<bool> ChangePassword(ChangePassword req);
         Task<bool> DeleteUser(DeleteUserRequest req);
-
     }
 }

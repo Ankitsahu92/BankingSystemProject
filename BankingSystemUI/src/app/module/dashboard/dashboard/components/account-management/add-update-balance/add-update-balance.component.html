@@ -2,16 +2,16 @@
     <div class="row">
         <tabset>
             <tab heading="AccountSummary" (selectTab)="selectTab='AccountSummary'">
-                <app-account-summary></app-account-summary>
+                <app-account-summary *ngIf="selectTab=='AccountSummary'"></app-account-summary>
             </tab>
             <tab heading="Deposit" (selectTab)="selectTab='Deposit'">
-                <app-deposit></app-deposit>
+                <app-deposit *ngIf="selectTab=='Deposit'"></app-deposit>
             </tab>
             <tab heading="Withdraw" (selectTab)="selectTab='Withdraw'">
-                <app-withdraw></app-withdraw>
+                <app-withdraw *ngIf="selectTab=='Withdraw'"></app-withdraw>
             </tab>
             <tab heading="Fund Transfer" (selectTab)="selectTab='FundTransfer'">
-                <app-fund-transfer></app-fund-transfer>
+                <app-fund-transfer *ngIf="selectTab=='FundTransfer'"></app-fund-transfer>
             </tab>
         </tabset>
     </div>

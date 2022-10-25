@@ -1,8 +1,71 @@
 <div class="row">
     <div class="col col-12">
         <fieldset>
-            <legend>AccountSummary</legend>
+            <legend>Account Summary</legend>
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col col-xs-4 col-sm-6 col-lg-4">
+                    Select Account No
+                </div>
+                <div class="col col-xs-4 col-sm-6 col-lg-4">
+                    <p-dropdown (onChange)="ddlOnChange()" [options]="AccountNoList" [(ngModel)]="selectedAccountNo"
+                        optionLabel="ddlName" [filter]="true" filterBy="ddlName" [showClear]="true"
+                        placeholder="Select a Account No">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="selectedAccountNo">
+                                <div>{{selectedAccountNo?.accountNo}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-accountNo pTemplate="item">
+                            <div class="accountNo-item">
+                                <div>{{accountNo.ddlName}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col col-12">
+                    <form [formGroup]="frm" (submit)="onSubmit()" autocomplete="off">
+                        <div class="row">
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>fullName</label>
+                                <input type="text" placeholder="fullName" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('fullName')?.hasError('required')}"
+                                    formControlName="fullName" />
+                            </div>
 
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>Customer Name</label>
+                                <input type="text" placeholder="userName" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('userName')?.hasError('required')}"
+                                    formControlName="userName" />
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>Account No</label>
+                                <input type="text" placeholder="accountNo" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('accountNo')?.hasError('required')}"
+                                    formControlName="accountNo" />
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>Account Type</label>
+                                <input type="text" placeholder="accountType" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('accountType')?.hasError('required')}"
+                                    formControlName="accountType" />
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>Balance</label>
+                                <input type="text" placeholder="newBalance" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('newBalance')?.hasError('required')}"
+                                    formControlName="newBalance" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </fieldset>
     </div>
 </div>
