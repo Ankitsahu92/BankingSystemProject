@@ -82,7 +82,6 @@ export class AddUserComponent implements OnInit {
 
   GetUsersByID(id: number): any {
     this.userService.GetUsersByID(id).subscribe((res: any) => {
-      console.log(res, "GetUsersByID");
       if (res) {
         this.frm.setValue(this.commonService.removeDefaultProperty(res));
         this.onIsAdminChange();

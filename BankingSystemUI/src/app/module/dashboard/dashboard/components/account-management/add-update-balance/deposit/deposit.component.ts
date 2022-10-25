@@ -64,7 +64,6 @@ export class DepositComponent implements OnInit {
 
   GetAllAccountNo() {
     this.addUpdateBalanceService.GetAllAccountNo().subscribe((res: any) => {
-      console.log("GetAllAccountNo", res);
       this.AccountNoList = res.map((item: any) => {
         item["ddlName"] = `${item.fullName} (${item.accountNo})`
         return item;

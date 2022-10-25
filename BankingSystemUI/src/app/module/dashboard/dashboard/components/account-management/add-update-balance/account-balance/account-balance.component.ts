@@ -61,7 +61,6 @@ export class AccountBalanceComponent implements OnInit {
 
   GetAllAccountNo() {
     this.addUpdateBalanceService.GetAllAccountNo().subscribe((res: any) => {
-      console.log("GetAllAccountNo", res);
       this.AccountNoList = res.map((item: any) => {
         item["ddlName"] = `${item.fullName} (${item.accountNo})`
         return item;
@@ -70,7 +69,6 @@ export class AccountBalanceComponent implements OnInit {
       if (!this.IsAdmin) {
         const userID = localStorage.getItem(AppConstants.UserID);
         this.selectedAccountNo = this.AccountNoList.find(f => f.id == userID);
-        console.log(this.selectedAccountNo, " this.selectedAccountNo ", this.AccountNoList, userID);
       }
     })
   }
@@ -94,7 +92,6 @@ export class AccountBalanceComponent implements OnInit {
   onSubmit(): any {
     this.isSubmited = true;
     if (!this.frm.valid) {
-      console.log(this.frm, "this.frm");
       return false;
     }
     this.GetTransactionByAccountNoAndDate();
@@ -128,7 +125,6 @@ export class AccountBalanceComponent implements OnInit {
   SearchTop10Transaction() {
     this.addUpdateBalanceService.GetTop10TransactionByAccountNo(this.selectedAccountNo.accountNo).subscribe((res: any) => {
       if (res && res.successs) {
-        console.log(res, "SearchTop10Transaction");
         this.transactionList = res.data
 
         /**
@@ -188,7 +184,6 @@ export class AccountBalanceComponent implements OnInit {
   GetTransactionByAccountNoAndDate() {
     this.addUpdateBalanceService.GetTransactionByAccountNoAndDate(this.frm.value).subscribe((res: any) => {
       if (res && res.successs) {
-        console.log(res, "GetTransactionByAccountNoAndDate");
         this.transactionList = res.data
 
         // this.frm.get('amount')?.addValidators(Validators.max(this.accountBanlace));

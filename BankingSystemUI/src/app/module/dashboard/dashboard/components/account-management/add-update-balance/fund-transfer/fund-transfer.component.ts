@@ -80,7 +80,6 @@ export class FundTransferComponent implements OnInit {
 
   GetAllAccountNo() {
     this.addUpdateBalanceService.GetAllAccountNo().subscribe((res: any) => {
-      console.log("GetAllAccountNo", res);
       this.FromAccountNoList = res.map((item: any) => {
         item["ddlName"] = `${item.fullName} (${item.accountNo})`
         return item;
@@ -102,7 +101,6 @@ export class FundTransferComponent implements OnInit {
   onSubmit(): any {
     this.isSubmited = true;
     if (!this.frm.valid) {
-      console.log(this.frm, "this.frm");
       return false;
     }
     const amount = this.frm.get('amount')?.value;

@@ -65,7 +65,6 @@ export class AccountSummaryComponent implements OnInit {
 
   GetAllAccountNo() {
     this.addUpdateBalanceService.GetAllAccountNo().subscribe((res: any) => {
-      console.log("GetAllAccountNo", res);
       this.AccountNoList = res.map((item: any) => {
         item["ddlName"] = `${item.fullName} (${item.accountNo})`
         return item;
@@ -83,8 +82,6 @@ export class AccountSummaryComponent implements OnInit {
     if (this.selectedAccountNo && this.selectedAccountNo.accountNo) {
       this.addUpdateBalanceService.AccountBalanceResponse(this.selectedAccountNo.accountNo).subscribe((res: any) => {
         this.accountInfo = res;
-        console.log(this.accountInfo.makeCheckbookRequest, "this.accountInfo.makeCheckbookRequest");
-
         this.frm.setValue(this.accountInfo);
         this.disableMakeCheckbookRequest = this.accountInfo.makeCheckbookRequest;
         this.frm.get('fullName')?.disable();
