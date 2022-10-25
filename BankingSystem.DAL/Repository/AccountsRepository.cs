@@ -78,19 +78,52 @@ namespace BankingSystem.DAL.Repository
             return null;
         }
 
-        public async Task<AccountsVM> GetTop10TransactionByAccountNo(string accountNo)
+        public async Task<ResponseModel> GetTop10TransactionByAccountNo(string accountNo)
         {
+            ResponseModel response = new ResponseModel();
             int UserId = await context.Users.Where(u => u.AccountNo == accountNo).Select(s => s.Id).FirstOrDefaultAsync();
             if (UserId > 0)
             {
-                List<Accounts> lastTrs = await context.Accounts.Where(u => u.UserId == UserId).TakeLast(10).ToListAsync();
+                List<Accounts> lastTrs = await context.Accounts
+                    .Where(u => u.UserId == UserId)
+                    .OrderByDescending(o => o.ID).Take(10)
+                    .ToListAsync();
                 if (lastTrs != null)
                 {
-                    return mapper.Map<AccountsVM>(lastTrs);
+                    response.Message = "";
+                    response.Successs = true;
+                    response.Data = lastTrs.OrderBy(o => o.ID).OrderBy(o => o.TransactionDate);
                 }
             }
 
-            return null;
+            return response;
+        }
+
+        public async Task<ResponseModel> GetTransactionByAccountNoAndDate(TransactionByAccountNoAndDateRequest req)
+        {
+            ResponseModel response = new ResponseModel();
+            int UserId = await context.Users.Where(u => u.AccountNo == req.AccountNo).Select(s => s.Id).FirstOrDefaultAsync();
+            if (UserId > 0)
+            {
+                DateTime ToDate = new DateTime(req.ToDate.Year, req.ToDate.Month, req.ToDate.Day, 23, 59, 59);
+
+                List<Accounts> lastTrs = await context.Accounts
+                    .Where(
+                        u => u.UserId == UserId &&
+                        u.TransactionDate >= req.FromDate &&
+                        u.TransactionDate <= ToDate
+                    )
+                    .OrderByDescending(o => o.ID)
+                    .ToListAsync();
+                if (lastTrs != null)
+                {
+                    response.Message = "";
+                    response.Successs = true;
+                    response.Data = lastTrs.OrderBy(o => o.ID).OrderBy(o => o.TransactionDate);
+                }
+            }
+
+            return response;
         }
 
         public async Task<bool> AddAndSubtractBalances(AccountsVM obj)
@@ -204,7 +237,7 @@ namespace BankingSystem.DAL.Repository
                             isActive = true,
                             OldBalance = toNewBalance,
                             TransactionDate = date,
-                            UserId = FromUserId,
+                            UserId = ToUserId,
                             TransactionType = "Cr",
                             Description = req.Description,
                             ChequeAndRefNo = $"Fund Transfer Form {req.FromAccount} To {req.ToAccount}",

@@ -10,6 +10,7 @@ import { DepositComponent } from './add-update-balance/deposit/deposit.component
 import { WithdrawComponent } from './add-update-balance/withdraw/withdraw.component';
 import { FundTransferComponent } from './add-update-balance/fund-transfer/fund-transfer.component';
 import { AccountSummaryComponent } from './add-update-balance/account-summary/account-summary.component';
+import { AccountBalanceComponent } from './add-update-balance/account-balance/account-balance.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AccountSummaryComponent } from './add-update-balance/account-summary/ac
     DepositComponent,
     WithdrawComponent,
     FundTransferComponent,
-    AccountSummaryComponent
+    AccountSummaryComponent,
+    AccountBalanceComponent
   ],
   imports: [
     CommonModule,

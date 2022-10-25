@@ -14,7 +14,7 @@ namespace BankingSystem.BAL.IService
         Task<AuthenticateResponse> Authenticate(AuthenticateRequest model);
         Task<IEnumerable<UserVM>> GetAll();
         Task<UserVM> GetById(int id);
-        Task<UserVM> AddAndUpdateUser(UserVM userObj);
+        Task<ResponseModel> AddAndUpdateUser(UserVM userObj);
         Task<bool> ChangePassword(ChangePassword userObj);
         Task<bool> DeleteUser(DeleteUserRequest req);
     }

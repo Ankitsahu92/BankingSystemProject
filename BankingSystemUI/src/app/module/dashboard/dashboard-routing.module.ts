@@ -20,6 +20,10 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: () => import('./dashboard/components/account-management/account-management.module')
           .then(m => m.AccountManagementModule)
+      }, {
+        path: 'account',
+        loadChildren: () => import('./dashboard/components/account-management/account-management.module')
+          .then(m => m.AccountManagementModule)
       },
     ]
   }

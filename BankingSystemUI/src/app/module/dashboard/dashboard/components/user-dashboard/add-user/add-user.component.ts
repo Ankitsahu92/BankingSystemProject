@@ -67,14 +67,15 @@ export class AddUserComponent implements OnInit {
   }
 
   onSubmit(): any {
-    const msg = `User ${this.id == 0 ? 'added' : 'updated'} successfully!!!`
     this.isSubmited = true;
     if (!this.frm.valid)
       return false;
     this.userService.AddOrUpdateUsers(this.frm.value).subscribe((res: any) => {
-      if (res) {
-        this.toastService.Success(msg);
+      if (res && res.successs) {
+        this.toastService.Success(res.message);
         this.route.navigate(["dashboard", "user"]);
+      } else {
+        this.toastService.Error(res.message);
       }
     })
   }

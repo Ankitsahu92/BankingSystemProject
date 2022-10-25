@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddUpdateBalanceService } from '../add-update-balance.service';
 
 @Component({
   selector: 'app-add-update-balance',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUpdateBalanceComponent implements OnInit {
   selectTab: string = 'AccountSummary'
-  constructor() { }
+  IsAdmin: boolean = false;
+  constructor(private addUpdateBalanceService: AddUpdateBalanceService) { }
 
   ngOnInit(): void {
+    this.IsAdmin = this.addUpdateBalanceService.IsAdmin();
   }
 
 }

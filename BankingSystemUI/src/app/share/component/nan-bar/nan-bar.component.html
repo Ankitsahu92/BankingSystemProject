@@ -13,6 +13,9 @@
             <li *ngIf="IsAdmin" class="nav-item " routerLinkActive="active">
                 <a class="nav-link" routerLink="/dashboard/admin/AddUpdateBalance">Add Update Balance </a>
             </li>
+            <li *ngIf="!IsAdmin" class="nav-item " routerLinkActive="active">
+                <a class="nav-link" routerLink="/dashboard/account/AddUpdateBalance">Account </a>
+            </li>
         </ul>
         <div class="btn-group" dropdown #dropdown="bs-dropdown" [autoClose]="true" style="float:right">
             <button id="button-basic" dropdownToggle type="button" class="btn btn-secondary  dropdown-toggle"

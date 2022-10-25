@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AppConstants } from 'src/app/share/constant/constant';
 import { CommonService } from 'src/app/share/services/common.service';
 import { ToastService } from 'src/app/share/services/toast.service';
 import { AddUpdateBalanceService } from '../../add-update-balance.service';
@@ -25,7 +26,7 @@ export class FundTransferComponent implements OnInit {
   ];
 
   toSelectedAccountNo?: any;
-
+  IsAdmin: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
@@ -34,6 +35,7 @@ export class FundTransferComponent implements OnInit {
     private commonService: CommonService,
     private toastService: ToastService
   ) {
+    this.IsAdmin = addUpdateBalanceService.IsAdmin();
     this.frm = this.bindForm();
   }
 
@@ -83,6 +85,12 @@ export class FundTransferComponent implements OnInit {
         item["ddlName"] = `${item.fullName} (${item.accountNo})`
         return item;
       });
+
+      if (!this.IsAdmin) {
+        const userID = localStorage.getItem(AppConstants.UserID);
+        this.FromSelectedAccountNo = this.FromAccountNoList.find(f => f.id == userID);
+        this.ddlFromOnChange();
+      }
     })
   }
 

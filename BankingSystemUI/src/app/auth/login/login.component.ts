@@ -48,7 +48,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem(AppConstants.IsAdmin, res.isAdmin);
           localStorage.setItem(AppConstants.UserID, res.id);
           this.frm.reset();
-          this.route.navigate(["dashboard", "home"]);
+          if (res.isAdmin) { this.route.navigate(["dashboard", "admin"]); }
+          else {
+            this.route.navigate(["dashboard", "account"]);
+          }
         },
         (err: any) => {
           // this.logMsg = { msg: err.error, alert: 'alert-danger' };

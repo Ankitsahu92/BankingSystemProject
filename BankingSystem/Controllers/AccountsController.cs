@@ -47,6 +47,12 @@ namespace BankingSystem.Controllers
             return Ok(await service.GetTop10TransactionByAccountNo(accountNo));
         }
 
+        [HttpPost("GetTransactionByAccountNoAndDate")]
+        public async Task<IActionResult> GetTransactionByAccountNoAndDate(TransactionByAccountNoAndDateRequest req)
+        {
+            return Ok(await service.GetTransactionByAccountNoAndDate(req));
+        }
+
         [HttpPost("UpdateInterest")]
         public async Task<IActionResult> UpdateInterest()
         {

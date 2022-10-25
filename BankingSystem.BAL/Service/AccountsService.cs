@@ -46,9 +46,14 @@ namespace BankingSystem.BAL.Service
             return await repository.GetAccountBalanceByUserID(UserId);
         }
 
-        public async Task<AccountsVM> GetTop10TransactionByAccountNo(string accountNo)
+        public async Task<ResponseModel> GetTop10TransactionByAccountNo(string accountNo)
         {
             return await repository.GetTop10TransactionByAccountNo(accountNo);
+        }
+
+        public async Task<ResponseModel> GetTransactionByAccountNoAndDate(TransactionByAccountNoAndDateRequest req)
+        {
+            return await repository.GetTransactionByAccountNoAndDate(req);
         }
 
         public async Task<bool> UpdateInterest()

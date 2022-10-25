@@ -51,7 +51,7 @@ namespace BankingSystem.BAL.Service
             return await unitOfWork.User.GetById(id);
         }
 
-        public async Task<UserVM> AddAndUpdateUser(UserVM userObj)
+        public async Task<ResponseModel> AddAndUpdateUser(UserVM userObj)
         {
             return await repository.AddAndUpdateUser(userObj);
         }

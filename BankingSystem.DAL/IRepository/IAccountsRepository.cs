@@ -18,7 +18,8 @@ namespace BankingSystem.DAL.IRepository
 
         Task<AccountBalanceResponse> GetAccountBalanceByUserID(int UserId);
 
-        Task<AccountsVM> GetTop10TransactionByAccountNo(string accountNo);
+        Task<ResponseModel> GetTop10TransactionByAccountNo(string accountNo);
+        Task<ResponseModel> GetTransactionByAccountNoAndDate(TransactionByAccountNoAndDateRequest req);
 
         Task<bool> AddAndSubtractBalances(AccountsVM obj);
 

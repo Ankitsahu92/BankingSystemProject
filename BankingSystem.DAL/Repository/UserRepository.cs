@@ -5,6 +5,7 @@ using BankingSystem.Entity.Context;
 using BankingSystem.Model.EntityModel;
 using BankingSystem.Model.Model;
 using BankingSystem.Model.RequestModel;
+using BankingSystem.Model.ResponseModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,11 @@ namespace BankingSystem.DAL.Repository
             this.context = context;
         }
 
-        public async Task<UserVM> AddAndUpdateUser(UserVM userObj)
+        public async Task<ResponseModel> AddAndUpdateUser(UserVM userObj)
         {
+            ResponseModel response = new ResponseModel();
             bool isSuccess = false;
+            bool isValid = false;
             if (userObj.Id > 0)
             {
                 var obj = await context.Users.SingleOrDefaultAsync(u => u.Id == userObj.Id);
@@ -53,14 +56,47 @@ namespace BankingSystem.DAL.Repository
             }
             else
             {
-                User user = mapper.Map<User>(userObj);
-                user.isActive = true;
-                user.Password = EncryptionAndDescription.Encrypt(user.Password);
-                await context.Users.AddAsync(user);
-                isSuccess = await context.SaveChangesAsync() > 0;
+                if (!string.IsNullOrEmpty(userObj.UserName))
+                {
+                    var obj = await context.Users.SingleOrDefaultAsync(u => u.UserName == userObj.UserName);
+                    if (obj != null)
+                    {
+                        response.Message = "Username already exists!!!";
+                    }
+                    else
+                    {
+                        isValid = true;
+                    }
+                }
+                else if (!string.IsNullOrEmpty(userObj.AccountNo))
+                {
+                    var obj = await context.Users.SingleOrDefaultAsync(u => u.AccountNo == userObj.AccountNo);
+                    if (obj != null)
+                    {
+                        response.Message = "Account No already exists!!!";
+                    }
+                    else
+                    {
+                        isValid = true;
+                    }
+                }
+                if (isValid)
+                {
+                    User user = mapper.Map<User>(userObj);
+                    user.isActive = true;
+                    user.Password = EncryptionAndDescription.Encrypt(user.Password);
+                    await context.Users.AddAsync(user);
+                    isSuccess = await context.SaveChangesAsync() > 0;
+                }
+            }
+            if (isSuccess)
+            {
+                response.Successs = true;
+                response.Message = userObj.Id == 0 ? $"User Added Successfully!!!" : $"User Updated Successfully!!!";
+                response.Data = userObj;
             }
 
-            return isSuccess ? userObj : null;
+            return response;
         }
 
         public async Task<bool> ChangePassword(ChangePassword userObj)
