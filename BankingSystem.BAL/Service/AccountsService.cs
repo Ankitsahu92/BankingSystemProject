@@ -56,9 +56,9 @@ namespace BankingSystem.BAL.Service
             return await repository.GetTransactionByAccountNoAndDate(req);
         }
 
-        public async Task<bool> UpdateInterest()
+        public async Task<ResponseModel> UpdateInterest(AccountsVM req)
         {
-            return await repository.UpdateInterest();
+            return await repository.UpdateInterest(req);
         }
         public async Task<ResponseModel> FundTransfer(FundTransferRequestModel req)
         {

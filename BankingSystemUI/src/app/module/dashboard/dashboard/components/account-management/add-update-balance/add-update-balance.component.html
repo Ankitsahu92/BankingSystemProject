@@ -16,6 +16,9 @@
             <tab heading="Fund Transfer" (selectTab)="selectTab='FundTransfer'">
                 <app-fund-transfer *ngIf="selectTab=='FundTransfer'"></app-fund-transfer>
             </tab>
+            <tab heading="Interest Calculator" (selectTab)="selectTab='Interest Calculator'" *ngIf="IsAdmin">
+                <app-interest-calculator *ngIf="selectTab=='Interest Calculator'"></app-interest-calculator>
+            </tab>
         </tabset>
     </div>
 </div>

@@ -22,7 +22,7 @@ namespace BankingSystem.BAL.IService
 
         Task<bool> AddAndSubtractBalances(AccountsVM obj);
 
-        Task<bool> UpdateInterest();
+        Task<ResponseModel> UpdateInterest(AccountsVM req);
         Task<ResponseModel> FundTransfer(FundTransferRequestModel req);
     }
 }

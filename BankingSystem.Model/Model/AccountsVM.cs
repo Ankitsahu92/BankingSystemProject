@@ -29,6 +29,7 @@ namespace BankingSystem.Model.Model
         [MaxLength(200)]
         public string? ChequeAndRefNo { get; set; }
         public DateTime TransactionDate { get; set; }
-        
+        public double InterestRate { get; set; }
+
     }
 }

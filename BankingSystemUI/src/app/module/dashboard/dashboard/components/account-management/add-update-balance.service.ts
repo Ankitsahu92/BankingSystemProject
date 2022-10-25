@@ -49,5 +49,9 @@ export class AddUpdateBalanceService {
     return this.http.get<any>(`${environment.url}Users/MakeCheckbookRequest?userID=${userID}`);
   }
 
+  UpdateInterest(parms: any): any {
+    return this.http.post<any>(`${environment.url}Accounts/UpdateInterest`, { ...parms, ...this.commonService.getCreateObj() });
+  }
+
 
 }

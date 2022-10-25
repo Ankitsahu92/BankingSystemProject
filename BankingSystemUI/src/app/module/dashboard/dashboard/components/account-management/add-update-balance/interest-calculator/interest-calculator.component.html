@@ -1,0 +1,153 @@
+<div class="row">
+    <div class="col col-12">
+        <fieldset>
+            <legend>Interest Calculator</legend>
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col col-xs-4 col-sm-6 col-lg-4">
+                    Select Account No
+                </div>
+                <div class="col col-xs-4 col-sm-6 col-lg-4">
+                    <p-dropdown [disabled]="!IsAdmin" (onChange)="ddlOnChange()" [options]="AccountNoList"
+                        [(ngModel)]="selectedAccountNo" optionLabel="ddlName" [filter]="true" filterBy="ddlName"
+                        [showClear]="true" placeholder="Select a Account No">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="selectedAccountNo">
+                                <div>{{selectedAccountNo?.accountNo}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-accountNo pTemplate="item">
+                            <div class="accountNo-item">
+                                <div>{{accountNo.ddlName}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col col-12">
+                    <form [formGroup]="frm" (submit)="onSubmit()" autocomplete="off">
+                        <div class="row">
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>from Date</label>
+                                <input [max]="maxDate" type="date" placeholder="from Date" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('fromDate')?.hasError('required')}"
+                                    formControlName="fromDate" />
+                            </div>
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>to Date</label>
+                                <input [max]="maxDate" type="date" placeholder="to Date" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmited && frm.get('toDate')?.hasError('required')}"
+                                    formControlName="toDate" />
+                            </div>
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <button [disabled]="!frm.valid" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row" *ngIf="isSearched">
+                <div class="col col-12">
+                    <form [formGroup]="intCalFrm" (submit)="onIntSubmit()" autocomplete="off">
+                        <div class="row">
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>interest Rate(%)</label>
+                                <input (keypress)="isNumber($event)" type="number" placeholder="interestRate"
+                                    maxlength="20" (change)="onInterestRatechanges()"
+                                    [ngClass]="{'hasError': isSubmitedInt && frm.get('interestRate')?.hasError('required')}"
+                                    formControlName="interestRate" />
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>Amount</label>
+                                <input [disabled]="disabled" (keypress)="isNumber($event)" type="number" readonly
+                                    placeholder="oldBalance" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmitedInt && frm.get('oldBalance')?.hasError('required')}"
+                                    formControlName="oldBalance" />
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>Interest Amount</label>
+                                <input [disabled]="disabled" (keypress)="isNumber($event)" type="number" readonly
+                                    placeholder="amount" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmitedInt && frm.get('amount')?.hasError('required')}"
+                                    formControlName="amount" />
+                            </div>
+
+                            <div class="col col-xs-4 col-sm-6 col-lg-4">
+                                <label>Total</label>
+                                <input [disabled]="disabled" (keypress)="isNumber($event)" type="number" readonly
+                                    placeholder="newBalance" maxlength="20"
+                                    [ngClass]="{'hasError': isSubmitedInt && frm.get('newBalance')?.hasError('required')}"
+                                    formControlName="newBalance" />
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-12">
+
+                                <!-- {{frm.value | json}} -->
+                                <div class="col col-12" style="text-align: end; margin: 5px;">
+                                    <button [disabled]="!intCalFrm.valid" type="submit">
+                                        Save Interest Amount
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="isSearched">
+                <div class="col col-12">
+                    <div class="card">
+                        <p-table [value]="transactionList" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                            responsiveLayout="scroll"
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                            [rowsPerPageOptions]="[10,25,50]">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>transaction Date</th>
+                                    <th>transaction Type</th>
+                                    <th>amount</th>
+                                    <th>interest Rate</th>
+                                    <th>description</th>
+                                    <th>Total</th>
+                                    <!-- <th>Action</th> -->
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-user>
+                                <tr
+                                    [ngStyle]="{'color': user.transactionType=='Dr' ? 'red':'blue','background': user.interestRate>0 ?  'rgb(255 88 52 / 27%)': '#fff'}">
+                                    <td>{{user.transactionDate | date: 'dd-MMM-yyyy'}}</td>
+                                    <td>{{user.transactionType}}</td>
+                                    <td>{{user.amount}}</td>
+                                    <td>{{user.interestRate>0? user.interestRate :'NA'}}</td>
+                                    <td>{{user.description}}</td>
+                                    <td>{{user.newBalance}}</td>
+                                    <!-- <td>
+                                        <button style="margin-right:7px;" pButton pRipple type="button"
+                                            icon="pi pi-user-edit" (click)="onEditClick(user.id)"
+                                            class="p-button-rounded p-button-outlined"></button>
+                                        <button pButton pRipple type="button" icon="pi pi-times"
+                                            (click)="onDeleteClick(user.id)"
+                                            class="p-button-rounded p-button-danger p-button-outlined"></button>
+                                    </td> -->
+                                </tr>
+                            </ng-template>
+                            <!-- <ng-template pTemplate="paginatorleft">
+                                <p-button pTooltip="Enter your username" type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                            </ng-template> -->
+
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

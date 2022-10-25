@@ -161,12 +161,20 @@ namespace BankingSystem.DAL.Repository
             return isSuccess;
         }
 
-        public async Task<bool> UpdateInterest()
+        public async Task<ResponseModel> UpdateInterest(AccountsVM req)
         {
-            bool isSuccess = false;
-
-
-            return isSuccess;
+            ResponseModel response = new ResponseModel();
+            if (req != null)
+            {
+                await context.Accounts.AddAsync(mapper.Map<Accounts>(req));
+                bool isSuccess = await context.SaveChangesAsync() > 0;
+                if (isSuccess)
+                {
+                    response.Successs = true;
+                    response.Message = "Interest Added Successful!!!";
+                }
+            }
+            return response;
         }
 
         public async Task<bool> DeleteUser(DeleteUserRequest req)

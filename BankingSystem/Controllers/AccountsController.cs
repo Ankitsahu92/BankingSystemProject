@@ -2,6 +2,7 @@
 using BankingSystem.Filters;
 using BankingSystem.Model.Model;
 using BankingSystem.Model.RequestModel;
+using BankingSystem.Model.ResponseModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,9 +55,9 @@ namespace BankingSystem.Controllers
         }
 
         [HttpPost("UpdateInterest")]
-        public async Task<IActionResult> UpdateInterest()
+        public async Task<IActionResult> UpdateInterest(AccountsVM req)
         {
-            return Ok(await service.UpdateInterest());
+            return Ok(await service.UpdateInterest(req));
         }
 
         [HttpPost("FundTransfer")]

@@ -127,56 +127,6 @@ export class AccountBalanceComponent implements OnInit {
       if (res && res.successs) {
         this.transactionList = res.data
 
-        /**
-         * amount
-        : 
-        50
-        chequeAndRefNo
-        : 
-        "Fund Transfer Form 123456789 To 023456789"
-        createdBy
-        : 
-        1
-        createdByIP
-        : 
-        "45.118.157.222"
-        createdOn
-        : 
-        "2022-10-25T13:35:38.394327"
-        description
-        : 
-        "50 trf"
-        id
-        : 
-        3
-        isActive
-        : 
-        true
-        isChequeTransaction
-        : 
-        false
-        modifiedBy
-        : 
-        null
-        modifiedByIP
-        : 
-        null
-        modifiedOn
-        : 
-        null
-        newBalance
-        : 
-        850
-        oldBalance
-        : 
-        900
-       
-       
-        userId
-        : 
-        2
-         */
-
       }
     })
   }
