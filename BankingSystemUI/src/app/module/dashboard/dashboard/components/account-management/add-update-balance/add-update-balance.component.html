@@ -10,8 +10,8 @@
             <tab heading="Deposit" (selectTab)="selectTab='Deposit'" *ngIf="IsAdmin">
                 <app-deposit *ngIf="selectTab=='Deposit'"></app-deposit>
             </tab>
-            <tab heading="Withdraw" (selectTab)="selectTab='Withdraw'" *ngIf="IsAdmin">
-                <app-withdraw *ngIf="selectTab=='Withdraw'"></app-withdraw>
+            <tab heading="Withdrawal" (selectTab)="selectTab='withdrawal'" *ngIf="IsAdmin">
+                <app-withdraw *ngIf="selectTab=='withdrawal'"></app-withdraw>
             </tab>
             <tab heading="Fund Transfer" (selectTab)="selectTab='FundTransfer'">
                 <app-fund-transfer *ngIf="selectTab=='FundTransfer'"></app-fund-transfer>
