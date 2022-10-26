@@ -1,3 +1,4 @@
+using BankingSystem.Entity.Context;
 using BankingSystem.ExtensionMethod;
 using BankingSystem.Filters;
 
@@ -12,6 +13,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<BankingSystemContext>();
+    bool dbIsCreated = dbContext.Database.EnsureCreatedAsync().Result;
+    if (dbIsCreated)
+    {
+        Console.WriteLine($"Database Created!!!");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

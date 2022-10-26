@@ -82,6 +82,9 @@ namespace BankingSystem.ExtensionMethod
                     }
                 });
             });
+
+            services.AddTransient<IAccountsService, AccountsService>();
+            services.AddTransient<IAccountsRepository, AccountsRepository>();
         }
     }
 }

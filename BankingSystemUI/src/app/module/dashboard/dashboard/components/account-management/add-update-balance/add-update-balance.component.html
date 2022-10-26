@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <tabset>
+            <tab heading="AccountSummary" (selectTab)="selectTab='AccountSummary'">
+                <app-account-summary *ngIf="selectTab=='AccountSummary'"></app-account-summary>
+            </tab>
+            <tab heading="Account Balance" (selectTab)="selectTab='AccountBalance'">
+                <app-account-balance *ngIf="selectTab=='AccountBalance'"></app-account-balance>
+            </tab>
+            <tab heading="Deposit" (selectTab)="selectTab='Deposit'" *ngIf="IsAdmin">
+                <app-deposit *ngIf="selectTab=='Deposit'"></app-deposit>
+            </tab>
+            <tab heading="Withdraw" (selectTab)="selectTab='Withdraw'" *ngIf="IsAdmin">
+                <app-withdraw *ngIf="selectTab=='Withdraw'"></app-withdraw>
+            </tab>
+            <tab heading="Fund Transfer" (selectTab)="selectTab='FundTransfer'">
+                <app-fund-transfer *ngIf="selectTab=='FundTransfer'"></app-fund-transfer>
+            </tab>
+            <tab heading="Interest Calculator" (selectTab)="selectTab='Interest Calculator'" *ngIf="IsAdmin">
+                <app-interest-calculator *ngIf="selectTab=='Interest Calculator'"></app-interest-calculator>
+            </tab>
+        </tabset>
+    </div>
+</div>

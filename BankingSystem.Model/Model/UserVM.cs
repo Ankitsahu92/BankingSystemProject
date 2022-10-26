@@ -17,11 +17,20 @@ namespace BankingSystem.Model.Model
         public string? FirstName { get; set; }
         [MaxLength(50)]
         public string? LastName { get; set; }
-        [Required]
         [MaxLength(50)]
         public string? UserName { get; set; }
 
+        [MaxLength(20)]
+        public string? AccountNo { get; set; }
+
+        [MaxLength(50)]
+        public string? AccountType { get; set; }
+
         // [JsonIgnore]
         public string? Password { get; set; }
+
+        public bool isAdmin { get; set; } = false;
+
+        public bool MakeCheckbookRequest { get; set; } = false;
     }
 }

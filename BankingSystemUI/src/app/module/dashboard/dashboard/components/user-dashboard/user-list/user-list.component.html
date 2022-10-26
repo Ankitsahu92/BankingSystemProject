@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col col-12" style="text-align:end">
+            <button (click)="RegisterNewUser()">Register New User</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-12">
+            <div class="card">
+                <p-table [value]="userList" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                    responsiveLayout="scroll"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [rowsPerPageOptions]="[10,25,50]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>first Name</th>
+                            <th>last Name</th>
+                            <th>User Name/ Accoun No</th>
+                            <th>Accoun Type</th>
+                            <th>is Admin</th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-user>
+                        <tr>
+                            <td>{{user.firstName}}</td>
+                            <td>{{user.lastName}}</td>
+                            <td>{{user.accountNo|| user.userName}}</td>
+                            <td>{{GetaccountType(user.accountType)}}</td>
+                            <td>{{user.isAdmin?'Admin':'User'}}</td>
+                            <td>
+                                <button style="margin-right:7px;" pButton pRipple type="button" icon="pi pi-user-edit"
+                                    (click)="onEditClick(user.id)" class="p-button-rounded p-button-outlined"></button>
+                                <button pButton pRipple type="button" icon="pi pi-times"
+                                    (click)="onDeleteClick(user.id)"
+                                    class="p-button-rounded p-button-danger p-button-outlined"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <!-- <ng-template pTemplate="paginatorleft">
+                        <p-button pTooltip="Enter your username" type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                    </ng-template> -->
+
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <app-confirm></app-confirm> -->

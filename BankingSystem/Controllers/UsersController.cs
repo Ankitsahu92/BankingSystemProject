@@ -2,8 +2,10 @@
 using BankingSystem.Filters;
 using BankingSystem.Model.Model;
 using BankingSystem.Model.RequestModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AuthorizeAttribute = BankingSystem.Filters.AuthorizeAttribute;
 
 namespace BankingSystem.Controllers
 {
@@ -18,6 +20,7 @@ namespace BankingSystem.Controllers
             userService = _userService;
         }
 
+        [AllowAnonymous]
         [HttpPost("Authenticate")]
         public async Task<IActionResult> Authenticate(AuthenticateRequest model)
         {
@@ -28,35 +31,60 @@ namespace BankingSystem.Controllers
             return Ok(response);
         }
 
-
-
-        [HttpGet]
-        [Authorize]
+        [HttpGet, Authorize]
         public async Task<IActionResult> Get()
         {
-            return Ok(await userService.GetAll());
+            var data = await userService.GetAll();
+            if (data != null)
+            {
+                foreach (var item in data)
+                {
+                    item.Password = String.Empty;
+                }
+            }
+            return Ok(data);
         }
 
-        [HttpGet("{id}")]
-        [Authorize]
+        [HttpGet("{id}"), Authorize]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await userService.GetById(id));
+            var data = await userService.GetById(id);
+            if(data != null)
+            {
+                data.Password = String.Empty;
+            }
+            return Ok(data);
         }
 
-        [HttpPost]
-        [Authorize]
+        [HttpPost, Authorize]
         public async Task<IActionResult> Post([FromBody] UserVM userObj)
         {
             userObj.Id = 0;
             return Ok(await userService.AddAndUpdateUser(userObj));
         }
 
-        [HttpPut]
-        [Authorize]
+        [HttpPut, Authorize]
         public async Task<IActionResult> Put([FromBody] UserVM userObj)
         {
             return Ok(await userService.AddAndUpdateUser(userObj));
+        }
+
+        [HttpPut("DeleteUser"), Authorize]
+        public async Task<IActionResult> DeleteUser([FromBody] DeleteUserRequest req)
+        {
+            return Ok(await userService.DeleteUser(req));
+        }
+
+        [HttpPut("ChangePassword"), Authorize]
+        public async Task<IActionResult> Put([FromBody] ChangePassword userObj)
+        {
+            return Ok(await userService.ChangePassword(userObj));
+        }
+
+        [HttpGet("MakeCheckbookRequest"), Authorize]
+        public async Task<IActionResult> MakeCheckbookRequest(int userID)
+        {
+            return Ok(await userService.MakeCheckbookRequest(userID));
         }
     }
 }

@@ -15,6 +15,7 @@ namespace BankingSystem.Common.AutoMapper
         {
             CreateMap<User, UserVM>().ReverseMap();
             CreateMap<Employee, EmployeeVM>().ReverseMap();
+            CreateMap<Accounts, AccountsVM>().ReverseMap();
         }
     }
 }

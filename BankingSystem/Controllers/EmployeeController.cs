@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BankingSystem.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Authorize]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService service;
@@ -16,6 +16,7 @@ namespace BankingSystem.Controllers
         {
             this.service = service;
         }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {

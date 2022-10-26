@@ -10,7 +10,7 @@ namespace BankingSystem.DAL.IRepository
     {
         IUserRepository User { get; }
         IEmployeeRepository Employee { get; }
-        //IQuestionsRepository Questions { get; }
+        IAccountsRepository Accounts { get; }
         int Complete();
         Task<int> CompleteAsync();
     }

@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-12">
+            <fieldset>
+                <legend>{{id == 0 ? 'Add':'Update'}} User</legend>
+                <form [formGroup]="frm" (submit)="onSubmit()" autocomplete="off">
+                    <div class="row">
+                        <div class="col col-xs-4 col-sm-6 col-lg-4">
+                            <label>first Name</label>
+                            <input type="text" placeholder="first Name" maxlength="20"
+                                [ngClass]="{'hasError': isSubmited && frm.get('firstName')?.hasError('required')}"
+                                formControlName="firstName" />
+                        </div>
+                        <div class="col col-xs-4 col-sm-6 col-lg-4">
+                            <label>last Name</label>
+                            <input type="text" placeholder="last Name" maxlength="20"
+                                [ngClass]="{'hasError': isSubmited && frm.get('lastName')?.hasError('required')}"
+                                formControlName="lastName" />
+                        </div>
+                        <div class="col col-xs-4 col-sm-6 col-lg-4 ">
+                            <label style="display: block;" class="form-check-label" for="isAdmin">is
+                                Admin </label>
+                            <input (change)="onIsAdminChange()" type="checkbox" placeholder="is Admin"
+                                class="form-check-input" id="isAdmin"
+                                [ngClass]="{'hasError': isSubmited && frm.get('isAdmin')?.hasError('required')}"
+                                formControlName="isAdmin" />
+                        </div>
+                        <div class="col col-xs-4 col-sm-6 col-lg-4">
+                            <label>user Name</label>
+                            <input type="text" placeholder="user Name" maxlength="20"
+                                [ngClass]="{'hasError': isSubmited && frm.get('userName')?.hasError('required')}"
+                                formControlName="userName" />
+                        </div>
+                        <div class="col col-xs-4 col-sm-6 col-lg-4">
+                            <label>accoun No</label>
+                            <input [disabled]="id != 0 " (keypress)="isNumber($event)" type="text"
+                                placeholder="accoun No" maxlength="10"
+                                [ngClass]="{'hasError': isSubmited && frm.get('accountNo')?.hasError('required')}"
+                                formControlName="accountNo" />
+                        </div>
+                        <div class="col col-xs-4 col-sm-6 col-lg-4">
+                            <label>accoun Type</label>
+                            <select placeholder="Select Ecom Coin"
+                                [ngClass]="{'hasError': isSubmited && frm.get('accountType')?.hasError('required')}"
+                                formControlName="accountType">
+                                <option value="-1">Select</option>
+                                <option [value]="ddl.value" *ngFor="let ddl of accountTypeList"> {{ddl.name}}</option>
+                            </select>
+
+                            <!-- <input type="text" placeholder="accoun Type"
+                                [ngClass]="{'hasError': isSubmited && frm.get('accountType')?.hasError('required')}"
+                                formControlName="accountType" /> -->
+                        </div>
+                        <div class="col col-xs-4 col-sm-6 col-lg-4">
+                            <label>password</label>
+                            <input type="password" placeholder="password" maxlength="30"
+                                [ngClass]="{'hasError': isSubmited && frm.get('password')?.hasError('required')}"
+                                formControlName="password" />
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col col-12" style="text-align: end; margin: 5px;">
+                            <button [disabled]="!frm.valid" type="submit"> {{id == 0 ?'Save':'Update'}}</button>
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>

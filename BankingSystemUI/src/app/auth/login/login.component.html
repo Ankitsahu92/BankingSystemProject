@@ -1,0 +1,26 @@
+<section class="container-fluid d-flex justify-content-center align-items-center">
+    <aside>
+        <div class="p-4 text-center">
+            <h1>Banking System</h1>
+            <!-- <div *ngIf="logMsg" class="alert text-center" [ngClass]="logMsg.alert" role="alert">
+                {{logMsg.msg}}
+            </div> -->
+            <form [formGroup]="frm" (submit)="logOnSubmit()" autocomplete="off">
+                <input type="text" placeholder="Username" formControlName="username"
+                    [ngClass]="{'hasError': isSubmited && frm.get('username')?.hasError('required')}" />
+                <div class="alert alert-danger inputMsg" role="alert"
+                    *ngIf="isSubmited && frm.get('username')?.hasError('required')">
+                    <div>Please mention your username</div>
+                </div>
+                <input type="password" placeholder="Password" formControlName="password"
+                    [ngClass]="{'hasError': isSubmited && frm.get('password')?.hasError('required')}" />
+                <div class="alert alert-danger inputMsg" role="alert"
+                    *ngIf="isSubmited && frm.get('password')?.hasError('required')">
+                    <div>Please mention your password</div>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <hr />
+        </div>
+    </aside>
+</section>
