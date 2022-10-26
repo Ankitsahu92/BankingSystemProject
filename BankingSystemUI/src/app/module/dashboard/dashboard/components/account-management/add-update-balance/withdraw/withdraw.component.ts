@@ -77,6 +77,11 @@ export class WithdrawComponent implements OnInit {
       this.frm.get('userId')?.patchValue(this.selectedAccountNo.id);
       this.onIsChequeTransactionChange();
       this.AccountBalanceResponse();
+
+      if (this.makeCheckbookRequest) {
+        this.frm.get('isChequeTransaction')?.disable();
+      }
+
     } else {
       Object.keys(this.frm.controls).map(control => {
         this.frm.get(control)?.disable();
@@ -135,7 +140,7 @@ export class WithdrawComponent implements OnInit {
   }
   accountBanlace: number = 0;
   fullName: string = '';
-
+  makeCheckbookRequest: boolean = false;
   AccountBalanceResponse() {
     this.accountBanlace = 0;
 
@@ -149,6 +154,7 @@ export class WithdrawComponent implements OnInit {
           this.fullName = `${res.fullName} (Account No: ${this.selectedAccountNo.accountNo})`
           // this.frm.get('amount')?.addValidators(Validators.max(this.accountBanlace));
           // this.frm.get('amount')?.updateValueAndValidity();
+          this.makeCheckbookRequest = res.makeCheckbookRequest;
         }
       })
     }
