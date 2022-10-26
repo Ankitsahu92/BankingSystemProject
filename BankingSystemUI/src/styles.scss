@@ -62,7 +62,7 @@ button[type=submit] {
     transition: 0.2s all linear;
 }
 
-button[type=submit]:hover { background-color: #F0A200; }
+button[type=submit]:hover { background-color: var(--subProjectTheme); }
 
 button[type=submit]:disabled { background-color: #999999; }
 
@@ -140,7 +140,7 @@ table tbody td:last-child a {
     text-decoration: none;
 }
 
-table tbody td:last-child a:hover { color: #f0a200; }
+table tbody td:last-child a:hover { color: var(--subProjectTheme); }
 
 
 div.medium-editor-element h1 { font-size: 30px; line-height: 38px; }
@@ -152,7 +152,7 @@ div.medium-editor-element h2 {
 }
 
 div.medium-editor-element a { color: var(--projectTheme); text-decoration: none; }
-div.medium-editor-element a:hover { color: #f0a200; }
+div.medium-editor-element a:hover { color: var(--subProjectTheme); }
 
 div.medium-editor-element h2 a { font-size: 22px; }
 
@@ -267,7 +267,7 @@ div.medium-editor-element .tabs input[type=radio] {
 }
 
 div.medium-editor-element .tabs input[type="radio"]:checked + label {
-	background: #F0A200;
+	background: var(--subProjectTheme);
 }
 
 div.medium-editor-element .tabs input[type="radio"]:checked + label + .tab {
@@ -309,7 +309,7 @@ div.medium-editor-element .toggles input[type=checkbox] {
 }
 
 div.medium-editor-element .toggles input[type=checkbox]:checked + label {
-	background: #F0A200;
+	background: var(--subProjectTheme);
 }
 
 div.medium-editor-element .toggles input[type=checkbox]:checked + label + .toggleOption {
