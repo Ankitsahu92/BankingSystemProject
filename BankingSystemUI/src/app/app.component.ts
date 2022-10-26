@@ -8,8 +8,9 @@ import { ToastService } from './share/services/toast.service';
 })
 export class AppComponent {
   title = 'Banking System';
-
+  year: number = 2022;
   constructor(private toastService: ToastService) {
+    this.year = new Date().getFullYear()
   }
 
   onConfirm() {

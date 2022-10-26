@@ -467,3 +467,13 @@ input::placeholder {
     --bs-bg-opacity: 1;
     background-color: #ff5834 !important;
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #ff5834 !important;
+    color: white;
+    text-align: center;
+  }
