@@ -23,10 +23,10 @@
 ## Deposit
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/14368240/197961888-0d927dd9-19fb-489a-bdf1-a03919d2160b.png">
 
-## Withdraw
+## withdrawal
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/14368240/197961952-a47b7a20-3794-4ec1-aacb-45654bac46dd.png">
 
-##Interest Calculator
+## Interest Calculator
 <img width="955" alt="image" src="https://user-images.githubusercontent.com/14368240/197962032-59208a4b-07bc-4826-a67a-bc0e14492928.png">
 
 # Customer Login
