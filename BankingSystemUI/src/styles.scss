@@ -1,3 +1,8 @@
+:root {
+    --projectTheme: #ff5834;
+    --subProjectTheme: #ff5934c9;
+  }
+
 /* You can add global styles to this file, and also import other style files */
 * {
     margin: 0;
@@ -50,14 +55,14 @@ div.textEditor {
 button[type=submit] {
     border: none;
     border-radius: 3px;
-    background-color: #ff5834;
+    background-color: var(--projectTheme);
     color: #ffffff;
     padding: 5px 30px;
     margin-top: 10px;
     transition: 0.2s all linear;
 }
 
-button[type=submit]:hover { background-color: #F0A200; }
+button[type=submit]:hover { background-color: var(--subProjectTheme); }
 
 button[type=submit]:disabled { background-color: #999999; }
 
@@ -84,7 +89,7 @@ section#mainContent {
 }
 
 div#pageHead {
-    border-bottom: #ff5834 dashed 1px;
+    border-bottom: var(--projectTheme) dashed 1px;
     padding-bottom: 8px;
     margin-bottom: 20px;
     display: flex;
@@ -95,13 +100,13 @@ div#pageHead {
 
 div#pageHead h2 {
     font-family: 'Alata', sans-serif;
-    color: #ff5834;
+    color: var(--projectTheme);
     font-size: 22px;
     margin: 0;
 }
 
 div#pageHead a {
-    background-color: #ff5834;
+    background-color: var(--projectTheme);
     color: #ffffff;
     padding: 3px 8px;
     border-radius: 3px;
@@ -113,7 +118,7 @@ table { width: 100%; }
 
 table thead th {
     color: #ffffff;
-    background-color: #FF5834;
+    background-color: var(--projectTheme);
     padding: 5px;
     text-align: center;
     text-transform: uppercase;
@@ -130,12 +135,12 @@ table tbody td { text-align: center; }
 
 table tbody td:last-child a {
     margin: 0 20px;
-    color: #ff5834;
+    color: var(--projectTheme);
     cursor: pointer;
     text-decoration: none;
 }
 
-table tbody td:last-child a:hover { color: #f0a200; }
+table tbody td:last-child a:hover { color: var(--subProjectTheme); }
 
 
 div.medium-editor-element h1 { font-size: 30px; line-height: 38px; }
@@ -146,8 +151,8 @@ div.medium-editor-element h2 {
     color: #363636;
 }
 
-div.medium-editor-element a { color: #FF5834; text-decoration: none; }
-div.medium-editor-element a:hover { color: #f0a200; }
+div.medium-editor-element a { color: var(--projectTheme); text-decoration: none; }
+div.medium-editor-element a:hover { color: var(--subProjectTheme); }
 
 div.medium-editor-element h2 a { font-size: 22px; }
 
@@ -243,7 +248,7 @@ div.medium-editor-element .tabs label {
 	margin-right: 0.2rem;
 	cursor: pointer;
     color: #fff;
-    background: #FF5834;
+    background: var(--projectTheme);
     font-weight: bold;
     transition: background ease 0.2s;
 }
@@ -262,7 +267,7 @@ div.medium-editor-element .tabs input[type=radio] {
 }
 
 div.medium-editor-element .tabs input[type="radio"]:checked + label {
-	background: #F0A200;
+	background: var(--subProjectTheme);
 }
 
 div.medium-editor-element .tabs input[type="radio"]:checked + label + .tab {
@@ -292,7 +297,7 @@ div.medium-editor-element .toggles label {
 	padding: 5px 8px;
 	margin-right: 0.2rem;
 	cursor: pointer;
-    background: #FF5834;
+    background: var(--projectTheme);
     font-weight: bold;
     transition: background ease 0.2s;
     border-radius: 5px;
@@ -304,7 +309,7 @@ div.medium-editor-element .toggles input[type=checkbox] {
 }
 
 div.medium-editor-element .toggles input[type=checkbox]:checked + label {
-	background: #F0A200;
+	background: var(--subProjectTheme);
 }
 
 div.medium-editor-element .toggles input[type=checkbox]:checked + label + .toggleOption {
@@ -321,20 +326,20 @@ div.medium-editor-element .toggles .toggleOption {
 }
 
 // a.nav-link {
-//     color: #ff5834 !important;
+//     color: var(--projectTheme) !important;
 // }
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
    color: #fff !important;
-   background-color: #ff5834 !important;
+   background-color: var(--projectTheme) !important;
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #ff5834 !important;
+    border-bottom: 1px solid var(--projectTheme) !important;
 }
 
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
-    border-color: #ff5834 #ff5834 #ff5834 !important;
+    border-color: var(--projectTheme) var(--projectTheme) var(--projectTheme) !important;
 }
 
 label {
@@ -360,14 +365,14 @@ li.nav-item.active> a {
 
 .btn {
     // color: var(--bs-btn-hover-color);
-    background-color:  #ff5834 !important;
+    background-color:  var(--projectTheme) !important;
     //border-color: var(--bs-btn-hover-border-color);
 }
 
 button {
     border: none;
     border-radius: 3px;
-    background-color: #ff5834;
+    background-color: var(--projectTheme);
     color: #ffffff;
     padding: 5px 30px;
     margin-top: 10px;
@@ -381,8 +386,8 @@ button {
   .btn-secondary:hover,.btn-secondary:active ,
   .btn-primary:hover,.btn-primary:active {
     color: #fff;
-    background-color: #db3c1a;
-    border-color: #db3c1a;
+    background-color: var(--projectTheme);
+    border-color: var(--projectTheme);
   }
   
   input.hasError {
@@ -404,12 +409,12 @@ button {
   fieldset {
       width: 100%;
       margin: 10px 0;
-      border: 1px solid #ff5834;
+      border: 1px solid var(--projectTheme);
       padding: 10px 10px;
     }
     
     legend {
-      background: #ff5834;
+      background: var(--projectTheme);
       padding: 4px 10px;
       color: #fff;
     }
@@ -465,7 +470,7 @@ input::placeholder {
 
 .bg-dark {
     --bs-bg-opacity: 1;
-    background-color: #ff5834 !important;
+    background-color: var(--projectTheme) !important;
 }
 
 .footer {
@@ -473,7 +478,7 @@ input::placeholder {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #ff5834 !important;
+    background-color: var(--projectTheme) !important;
     color: white;
     text-align: center;
   }
