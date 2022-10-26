@@ -21,6 +21,6 @@ button[type=submit] {
 }
 
 a {
-    color: #FF5834;
+    color: var(--projectTheme);
     cursor: pointer;
 }
